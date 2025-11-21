@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christian Miranda - ML Engineer Portfolio</title>
+    <title>Christian Miranda</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -14,7 +15,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #0f172a;
@@ -33,7 +34,7 @@
             background: rgba(30, 41, 59, 0.5);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(148, 163, 184, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .card:hover {
@@ -45,7 +46,7 @@
         .skill-tag {
             background: rgba(59, 130, 246, 0.1);
             border: 1px solid rgba(59, 130, 246, 0.3);
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .skill-tag:hover {
@@ -63,6 +64,8 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
+            padding: 10px;
+            overflow-y: auto;
         }
 
         .modal.active {
@@ -75,10 +78,12 @@
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             border: 1px solid rgba(148, 163, 184, 0.2);
             border-radius: 1rem;
-            max-width: 90%;
-            max-height: 90%;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
             overflow-y: auto;
-            animation: modalSlideIn 0.3s ease-out;
+            margin: auto;
+            position: relative;
         }
 
         @keyframes modalSlideIn {
@@ -86,6 +91,7 @@
                 opacity: 0;
                 transform: translateY(-50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -109,7 +115,7 @@
 
         .nav-link {
             position: relative;
-            transition: color 0.3s ease;
+            transition: color 0.2s ease;
         }
 
         .nav-link::after {
@@ -120,7 +126,7 @@
             width: 0;
             height: 2px;
             background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
-            transition: width 0.3s ease;
+            transition: width 0.2s ease;
         }
 
         .nav-link:hover::after {
@@ -128,7 +134,7 @@
         }
 
         ::-webkit-scrollbar {
-            width: 10px;
+            width: 8px;
         }
 
         ::-webkit-scrollbar-track {
@@ -141,169 +147,386 @@
         }
 
         .floating {
-            animation: floating 3s ease-in-out infinite;
+            animation: floating 2s ease-in-out infinite;
         }
 
         @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.hidden {
+            transform: translateX(-100%);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Responsividade melhorada */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10px;
+                max-height: 95vh;
+                padding: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px !important;
+            }
+
+            .hero-buttons button,
+            .hero-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .timeline-item {
+                padding-left: 1.5rem !important;
+            }
+
+            .timeline-item::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item .absolute {
+                left: 0.25rem !important;
+                width: 0.75rem !important;
+                height: 0.75rem !important;
+            }
+
+            .experience-list li {
+                margin-bottom: 0.5rem;
+                padding-left: 0.5rem;
+            }
+
+            .card {
+                padding: 1rem !important;
+            }
+
+            .modal-content {
+                padding: 1rem !important;
+            }
+
+            .project-card,
+            .certificate-card {
+                padding: 1rem !important;
+            }
+
+            h1 {
+                font-size: 2.25rem !important;
+            }
+
+            h2 {
+                font-size: 1.875rem !important;
+            }
+
+            h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .text-container p, .text-container li {
+                font-size: 0.95rem !important;
+                line-height: 1.5;
+            }
+
+            .section {
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+
+            .container {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-content {
+                padding: 12px !important;
+            }
+
+            .project-card,
+            .certificate-card {
+                padding: 12px !important;
+            }
+
+            h1 {
+                font-size: 2rem !important;
+            }
+
+            h2 {
+                font-size: 1.75rem !important;
+            }
+
+            h3 {
+                font-size: 1.125rem !important;
+            }
+
+            .text-container p, .text-container li {
+                font-size: 0.9rem !important;
+            }
+
+            .skill-tag {
+                font-size: 0.75rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+
+            .section {
+                padding-top: 2.5rem !important;
+                padding-bottom: 2.5rem !important;
+            }
+
+            .container {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+
+            .hero-icon {
+                width: 5rem !important;
+                height: 5rem !important;
+            }
+
+            .hero-icon i {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        /* Melhorias para telas muito pequenas */
+        @media (max-width: 360px) {
+            .hero-buttons button,
+            .hero-buttons a {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem !important;
+            }
+
+            .social-icons a {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        /* Melhorias de acessibilidade */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Melhorias de toque para dispositivos móveis */
+        @media (hover: none) {
+            .card:hover {
+                transform: none;
+            }
+
+            .skill-tag:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
-<body>
+
+<body class="min-w-[320px]">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50">
-        <div class="container mx-auto px-6 py-4">
+    <nav class="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-700/50">
+        <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
-                <h1 class="text-2xl font-bold gradient-text">CM</h1>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-slate-300 hover:text-white">Home</a>
-                    <a href="#about" class="nav-link text-slate-300 hover:text-white">Sobre</a>
-                    <a href="#experience" class="nav-link text-slate-300 hover:text-white">Experiência</a>
-                    <a href="#skills" class="nav-link text-slate-300 hover:text-white">Skills</a>
-                    <a href="#contact" class="nav-link text-slate-300 hover:text-white">Contato</a>
+                <h1 class="text-xl font-bold gradient-text">Christian Miranda</h1>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="nav-link text-slate-300 hover:text-white text-sm">Home</a>
+                    <a href="#about" class="nav-link text-slate-300 hover:text-white text-sm">Sobre</a>
+                    <a href="#experience" class="nav-link text-slate-300 hover:text-white text-sm">Experiência</a>
+                    <a href="#skills" class="nav-link text-slate-300 hover:text-white text-sm">Skills</a>
+                    <a href="#contact" class="nav-link text-slate-300 hover:text-white text-sm">Contato</a>
                 </div>
-                <button id="menuBtn" class="md:hidden text-white">
-                    <i class="fas fa-bars text-2xl"></i>
+                <button id="menuBtn" class="md:hidden text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" class="fixed inset-0 bg-slate-900 z-40 hidden">
-        <div class="flex flex-col items-center justify-center h-full space-y-8">
-            <a href="#home" class="text-2xl text-slate-300 hover:text-white mobile-link">Home</a>
-            <a href="#about" class="text-2xl text-slate-300 hover:text-white mobile-link">Sobre</a>
-            <a href="#experience" class="text-2xl text-slate-300 hover:text-white mobile-link">Experiência</a>
-            <a href="#skills" class="text-2xl text-slate-300 hover:text-white mobile-link">Skills</a>
-            <a href="#contact" class="text-2xl text-slate-300 hover:text-white mobile-link">Contato</a>
+    <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-slate-900 z-40 hidden md:hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8 p-4">
+            <button id="closeMenuBtn" class="absolute top-6 right-6 text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="#home" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Home</a>
+            <a href="#about" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Sobre</a>
+            <a href="#experience" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Experiência</a>
+            <a href="#skills" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Skills</a>
+            <a href="#contact" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Contato</a>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 px-4">
         <div class="container mx-auto text-center">
-            <div class="floating mb-8">
-                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1">
-                    <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
-                        <i class="fas fa-brain text-5xl gradient-text"></i>
-                    </div>
+            <div class="hero-icon w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mb-6">
+                <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
+                    <i class="fas fa-code text-2xl gradient-text"></i>
                 </div>
             </div>
-            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+
+            <h1 class="text-3xl font-bold mb-4">
                 Christian Miranda
             </h1>
-            <h2 class="text-2xl md:text-4xl gradient-text mb-6">
+            <h2 class="text-xl gradient-text mb-6">
                 Senior Machine Learning Engineer
             </h2>
-            <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-8">
-                +10 anos de experiência em engenharia de software | 7 anos em Data Science + ML Engineering | Especialista em MLOps, Computer Vision, Transformers e LLMs
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto mb-8 text-container">
+                +10 anos de experiência em engenharia de software | 7 anos em Data Science + ML Engineering |
+                Especialista em MLOps, Computer Vision, Transformers e LLMs
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#contact" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all">
+            <div class="flex flex-col sm:flex-row justify-center gap-4 hero-buttons">
+                <a href="#contact"
+                    class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all text-sm">
                     Entre em Contato
                 </a>
-                <button onclick="openModal('projects')" class="px-8 py-3 border-2 border-blue-500 rounded-full text-white font-semibold hover:bg-blue-500/10 transition-all">
+                <button onclick="openModal('projects')"
+                    class="px-6 py-3 border-2 border-blue-500 rounded-full text-white font-semibold hover:bg-blue-500/10 transition-all text-sm">
                     Ver Projetos
                 </button>
-                <button onclick="openModal('certificates')" class="px-8 py-3 border-2 border-purple-500 rounded-full text-white font-semibold hover:bg-purple-500/10 transition-all">
+                <button onclick="openModal('certificates')"
+                    class="px-6 py-3 border-2 border-purple-500 rounded-full text-white font-semibold hover:bg-purple-500/10 transition-all text-sm">
                     Ver Certificados
                 </button>
             </div>
-            <div class="flex justify-center gap-6 mt-8">
-                <a href="https://linkedin.com/in/christianmoryah" target="_blank" class="text-3xl text-slate-400 hover:text-blue-500 transition-colors">
+            <div class="flex justify-center gap-6 mt-8 social-icons">
+                <a href="https://linkedin.com/in/christianmoryah" target="_blank"
+                    class="text-2xl text-slate-400 hover:text-blue-500 transition-colors">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="mailto:christianmoryah@gmail.com" class="text-3xl text-slate-400 hover:text-blue-500 transition-colors">
-                    <i class="fas fa-envelope"></i>
+                <a href="https://github.com/christianmoryah" target="_blank"
+                    class="text-2xl text-slate-400 hover:text-gray-300 transition-colors">
+                    <i class="fab fa-github"></i>
                 </a>
-                <a href="tel:+556120201350" class="text-3xl text-slate-400 hover:text-blue-500 transition-colors">
-                    <i class="fas fa-phone"></i>
+                <a href="https://wa.me/556198128604"
+                    class="text-2xl text-slate-400 hover:text-blue-500 transition-colors">
+                    <i class="fab fa-whatsapp"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section py-20 px-6">
+    <section id="about" class="section py-12 px-4">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">Sobre Mim</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="card p-8 rounded-2xl">
-                    <i class="fas fa-graduation-cap text-4xl gradient-text mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-4">Formação</h3>
-                    <div class="space-y-4">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Sobre Mim</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card p-6 rounded-2xl">
+                    <i class="fas fa-graduation-cap text-2xl gradient-text mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Formação</h3>
+                    <div class="space-y-4 text-container">
                         <div>
-                            <h4 class="text-lg font-semibold text-blue-400">Master of Science</h4>
-                            <p class="text-slate-400">Mechatronics, Robotics, and Automation Engineering + AI</p>
-                            <p class="text-slate-500">Universidade de Brasília | 2022 - 2024</p>
+                            <h4 class="text-base font-semibold text-blue-400">Master of Science</h4>
+                            <p class="text-slate-400 text-sm">Mechatronics, Robotics, and Automation Engineering + AI</p>
+                            <p class="text-slate-500 text-sm">Universidade de Brasília | 2022 - 2024</p>
                         </div>
                         <div>
-                            <h4 class="text-lg font-semibold text-blue-400">Bachelor's Degree</h4>
-                            <p class="text-slate-400">Computer Science</p>
-                            <p class="text-slate-500">UniCEUB | 2005 - 2009</p>
+                            <h4 class="text-base font-semibold text-blue-400">Bachelor's Degree</h4>
+                            <p class="text-slate-400 text-sm">Computer Science</p>
+                            <p class="text-slate-500 text-sm">UniCEUB | 2005 - 2009</p>
                         </div>
                     </div>
                 </div>
-                <div class="card p-8 rounded-2xl">
-                    <i class="fas fa-map-marker-alt text-4xl gradient-text mb-4"></i>
-                    <h3 class="text-2xl font-bold mb-4">Contato</h3>
-                    <div class="space-y-3 text-slate-400">
-                        <p><i class="fas fa-envelope text-blue-500 mr-3"></i>christianmoryah@gmail.com</p>
-                        <p><i class="fas fa-phone text-blue-500 mr-3"></i>+55 61 2020-1350</p>
-                        <p><i class="fas fa-map-pin text-blue-500 mr-3"></i>Brasília, Brasil</p>
-                        <p><i class="fab fa-linkedin text-blue-500 mr-3"></i>linkedin.com/in/christianmoryah</p>
+                <div class="card p-6 rounded-2xl">
+                    <i class="fas fa-map-marker-alt text-2xl gradient-text mb-4"></i>
+                    <h3 class="text-xl font-bold mb-4">Contato</h3>
+                    <div class="space-y-3 text-slate-400 text-sm text-container">
+                        <a href="mailto:christianmoryah@gmail.com" class="flex items-center">
+                            <i class="fas fa-envelope text-blue-500 mr-3 w-5"></i>
+                            <span class="break-all">christianmoryah@gmail.com</span>
+                        </a>
+                        <a href="https://wa.me/556198128604" class="flex items-center">
+                            <i class="fas fa-phone text-blue-500 mr-3 w-5"></i>
+                            <span>+55 61 9812-8604</span>
+                        </a>
+                        <div class="flex items-center">
+                            <i class="fas fa-map-pin text-blue-500 mr-3 w-5"></i>
+                            <span>Brasília, Brasil</span>
+                        </div>
+                        <a href="https://linkedin.com/in/christianmoryah" target="_blank" class="flex items-center">
+                            <i class="fab fa-linkedin text-blue-500 mr-3 w-5"></i>
+                            <span class="break-all">linkedin.com/in/christianmoryah</span>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="card p-8 rounded-2xl mt-8">
-                <h3 class="text-2xl font-bold mb-4 gradient-text">Resumo Profissional</h3>
-                <p class="text-lg text-slate-300 leading-relaxed">
-                    Engenheiro de Machine Learning com mais de 10 anos de experiência em desenvolvimento de software e 7 anos focado em Data Science e ML Engineering. 
-                    Especialista em MLOps, Computer Vision, e Large Language Models (LLMs). Atualmente cursando mestrado em Mecatrônica e Robótica com foco em IA. 
-                    Experiência comprovada em automação de plataformas de pesquisa em ML, otimização de modelos transformers, e implementação de soluções de visão computacional. 
-                    Contribuí significativamente para projetos governamentais no Brasil, incluindo a política de dados abertos e infraestrutura de dados do governo federal.
+            <div class="card p-6 rounded-2xl mt-6">
+                <h3 class="text-xl font-bold mb-4 gradient-text">Resumo Profissional</h3>
+                <p class="text-slate-300 leading-relaxed text-container">
+                    Engenheiro de Machine Learning com mais de 10 anos de experiência em desenvolvimento de software e 7
+                    anos focado em Data Science e ML Engineering.
+                    Especialista em MLOps, Computer Vision, e Large Language Models (LLMs). Atualmente cursando mestrado
+                    em Mecatrônica e Robótica com foco em IA.
+                    Experiência comprovada em automação de plataformas de pesquisa em ML, otimização de modelos
+                    transformers, e implementação de soluções de visão computacional.
+                    Contribuí significativamente para projetos governamentais no Brasil, incluindo a política de dados
+                    abertos e infraestrutura de dados do governo federal.
                 </p>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section py-20 px-6 bg-slate-900/30">
+    <section id="experience" class="section py-12 px-4 bg-slate-900/30">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">Experiência Profissional</h2>
-            <div class="space-y-8">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Experiência Profissional</h2>
+            <div class="space-y-6">
                 <!-- Tryolabs -->
-                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
-                    <div class="absolute left-0 top-8 w-4 h-4 bg-blue-500 rounded-full"></div>
-                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Senior Machine Learning Engineer</h3>
-                            <p class="text-xl text-blue-400">Tryolabs</p>
+                <div class="card p-6 rounded-2xl relative pl-8 timeline-item">
+                    <div class="absolute left-2 top-6 w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-xl font-bold text-white">Senior Machine Learning Engineer</h3>
+                            <p class="text-lg text-blue-400">Tryolabs</p>
                         </div>
-                        <span class="text-slate-400 mt-2 md:mt-0">Out 2024 - Presente</span>
+                        <span class="text-slate-400 text-sm">Out 2024 - Presente</span>
                     </div>
-                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Montevidéu, Uruguai (Remoto)</p>
+                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Montevidéu, Uruguai (Remoto)</p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Machine Learning</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLOps</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">LLMs</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Machine Learning</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">MLOps</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">LLMs</span>
                     </div>
                 </div>
 
                 <!-- Numenta -->
-                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
-                    <div class="absolute left-0 top-8 w-4 h-4 bg-purple-500 rounded-full"></div>
-                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">ML Research Engineer</h3>
-                            <p class="text-xl text-purple-400">Numenta</p>
+                <div class="card p-6 rounded-2xl relative pl-8 timeline-item">
+                    <div class="absolute left-2 top-6 w-3 h-3 bg-purple-500 rounded-full"></div>
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-xl font-bold text-white">ML Research Engineer</h3>
+                            <p class="text-lg text-purple-400">Numenta</p>
                         </div>
-                        <span class="text-slate-400 mt-2 md:mt-0">Nov 2021 - Out 2024</span>
+                        <span class="text-slate-400 text-sm">Nov 2021 - Out 2024</span>
                     </div>
-                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Redwood City, CA, USA</p>
-                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4">
+                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Redwood City, CA, USA</p>
+                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4 text-sm experience-list">
                         <li>Automação de plataforma de pesquisa em ML</li>
                         <li>Técnicas neuromórficas para modelos de Deep Learning</li>
                         <li>Cirurgia de modelos em transformers e LLMs</li>
@@ -311,49 +534,49 @@
                         <li>Vision Transformers</li>
                     </ul>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PyTorch</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">NumPy</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Pandas</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Matplotlib</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PyTorch</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">NumPy</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Pandas</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Matplotlib</span>
                     </div>
                 </div>
 
                 <!-- Facily -->
-                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
-                    <div class="absolute left-0 top-8 w-4 h-4 bg-blue-500 rounded-full"></div>
-                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Data Scientist / ML Engineer</h3>
-                            <p class="text-xl text-blue-400">Facily</p>
+                <div class="card p-6 rounded-2xl relative pl-8 timeline-item">
+                    <div class="absolute left-2 top-6 w-3 h-3 bg-blue-500 rounded-full"></div>
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-xl font-bold text-white">Data Scientist / ML Engineer</h3>
+                            <p class="text-lg text-blue-400">Facily</p>
                         </div>
-                        <span class="text-slate-400 mt-2 md:mt-0">Fev 2021 - Out 2021</span>
+                        <span class="text-slate-400 text-sm">Fev 2021 - Out 2021</span>
                     </div>
-                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Brasil</p>
-                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4">
+                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Brasil</p>
+                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4 text-sm experience-list">
                         <li>Sistema de recomendação empresarial com A/B testing</li>
                         <li>Previsão de renda média baseada em geolocalização</li>
                         <li>Análise de segmentação</li>
                     </ul>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Spark</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Docker</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">GCP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Python</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Spark</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Docker</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">GCP</span>
                     </div>
                 </div>
 
                 <!-- Ministério da Economia -->
-                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
-                    <div class="absolute left-0 top-8 w-4 h-4 bg-green-500 rounded-full"></div>
-                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">IT Analyst & Data Engineer</h3>
-                            <p class="text-xl text-green-400">Ministério da Economia</p>
+                <div class="card p-6 rounded-2xl relative pl-8 timeline-item">
+                    <div class="absolute left-2 top-6 w-3 h-3 bg-green-500 rounded-full"></div>
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-xl font-bold text-white">IT Analyst & Data Engineer</h3>
+                            <p class="text-lg text-green-400">Ministério da Economia</p>
                         </div>
-                        <span class="text-slate-400 mt-2 md:mt-0">Abr 2010 - Jan 2022</span>
+                        <span class="text-slate-400 text-sm">Abr 2010 - Jan 2022</span>
                     </div>
-                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-green-500 mr-2"></i>Brasília, Brasil</p>
-                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4">
+                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-green-500 mr-2"></i>Brasília, Brasil</p>
+                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4 text-sm experience-list">
                         <li>Design da Política de Dados Abertos do Brasil</li>
                         <li>Design da Infraestrutura de Dados Abertos do Brasil</li>
                         <li>Desenvolvimento de APIs RESTful de Dados Abertos</li>
@@ -361,25 +584,25 @@
                         <li>Pipelines Airflow + experimentos de Data Science</li>
                     </ul>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Apache Airflow</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">SQL</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Python</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Apache Airflow</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">SQL</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Java</span>
                     </div>
                 </div>
 
                 <!-- behup -->
-                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
-                    <div class="absolute left-0 top-8 w-4 h-4 bg-purple-500 rounded-full"></div>
-                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
-                        <div>
-                            <h3 class="text-2xl font-bold text-white">Data Scientist / ML Engineer</h3>
-                            <p class="text-xl text-purple-400">behup</p>
+                <div class="card p-6 rounded-2xl relative pl-8 timeline-item">
+                    <div class="absolute left-2 top-6 w-3 h-3 bg-purple-500 rounded-full"></div>
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-xl font-bold text-white">Data Scientist / ML Engineer</h3>
+                            <p class="text-lg text-purple-400">behup</p>
                         </div>
-                        <span class="text-slate-400 mt-2 md:mt-0">Jun 2019 - Jan 2021</span>
+                        <span class="text-slate-400 text-sm">Jun 2019 - Jan 2021</span>
                     </div>
-                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Brasília, Brasil</p>
-                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4">
+                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Brasília, Brasil</p>
+                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4 text-sm experience-list">
                         <li>Pipeline de Speech-to-Text</li>
                         <li>Serviço de pontuação de texto</li>
                         <li>Múltiplos serviços de NLP</li>
@@ -387,9 +610,9 @@
                         <li>Dashboards Power BI</li>
                     </ul>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PyTorch</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">NLP</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLflow</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PyTorch</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">NLP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">MLflow</span>
                     </div>
                 </div>
             </div>
@@ -397,85 +620,85 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="section py-20 px-6">
+    <section id="skills" class="section py-12 px-4">
         <div class="container mx-auto max-w-6xl">
-            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">Competências Técnicas</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card p-8 rounded-2xl">
-                    <div class="text-4xl gradient-text mb-4">
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">Competências Técnicas</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 skills-grid">
+                <div class="card p-6 rounded-2xl">
+                    <div class="text-2xl gradient-text mb-4">
                         <i class="fas fa-brain"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Machine Learning</h3>
+                    <h3 class="text-xl font-bold mb-4">Machine Learning</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PyTorch</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">LLMs</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Computer Vision</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">NLP</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLOps</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLflow</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PyTorch</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">LLMs</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Computer Vision</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">NLP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">MLOps</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">MLflow</span>
                     </div>
                 </div>
-                <div class="card p-8 rounded-2xl">
-                    <div class="text-4xl gradient-text mb-4">
+                <div class="card p-6 rounded-2xl">
+                    <div class="text-2xl gradient-text mb-4">
                         <i class="fas fa-code"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Programação</h3>
+                    <h3 class="text-xl font-bold mb-4">Programação</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Java</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">JavaScript</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Node.js</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">SQL</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Python</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Java</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">JavaScript</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Node.js</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">SQL</span>
                     </div>
                 </div>
-                <div class="card p-8 rounded-2xl">
-                    <div class="text-4xl gradient-text mb-4">
+                <div class="card p-6 rounded-2xl">
+                    <div class="text-2xl gradient-text mb-4">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Data Science</h3>
+                    <h3 class="text-xl font-bold mb-4">Data Science</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">NumPy</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Pandas</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Matplotlib</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Hypothesis Testing</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Spark</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">NumPy</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Pandas</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Matplotlib</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Hypothesis Testing</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Spark</span>
                     </div>
                 </div>
-                <div class="card p-8 rounded-2xl">
-                    <div class="text-4xl gradient-text mb-4">
+                <div class="card p-6 rounded-2xl">
+                    <div class="text-2xl gradient-text mb-4">
                         <i class="fas fa-cloud"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Cloud & DevOps</h3>
+                    <h3 class="text-xl font-bold mb-4">Cloud & DevOps</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">AWS</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">GCP</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Docker</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Apache Airflow</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">DevOps</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">AWS</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">GCP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Docker</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Apache Airflow</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">DevOps</span>
                     </div>
                 </div>
-                <div class="card p-8 rounded-2xl">
-                    <div class="text-4xl gradient-text mb-4">
+                <div class="card p-6 rounded-2xl">
+                    <div class="text-2xl gradient-text mb-4">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Banco de Dados</h3>
+                    <h3 class="text-xl font-bold mb-4">Banco de Dados</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PostgreSQL</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MySQL</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">SQL Server</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PostgreSQL</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">MySQL</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">SQL Server</span>
                     </div>
                 </div>
-                <div class="card p-8 rounded-2xl">
-                    <div class="text-4xl gradient-text mb-4">
+                <div class="card p-6 rounded-2xl">
+                    <div class="text-2xl gradient-text mb-4">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Metodologias</h3>
+                    <h3 class="text-xl font-bold mb-4">Metodologias</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Scrum</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PMBOK</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PRINCE2</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">RUP</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">UML</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Scrum</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PMBOK</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">PRINCE2</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">RUP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">UML</span>
                     </div>
                 </div>
             </div>
@@ -483,120 +706,179 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section py-20 px-6 bg-slate-900/30">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">Vamos Conversar</h2>
-            <p class="text-xl text-slate-400 mb-12">
+    <section id="contact" class="section py-12 px-4 bg-slate-900/30">
+        <div class="container mx-auto max-w-6xl text-center">
+            <h2 class="text-3xl font-bold mb-8 gradient-text">Vamos Conversar</h2>
+            <p class="text-lg text-slate-400 mb-8 text-container">
                 Estou sempre aberto a novas oportunidades e colaborações interessantes. Entre em contato!
             </p>
-            <div class="grid md:grid-cols-3 gap-6">
-                <a href="mailto:christianmoryah@gmail.com" class="card p-8 rounded-2xl hover:scale-105 transition-transform">
-                    <i class="fas fa-envelope text-4xl gradient-text mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Email</h3>
-                    <p class="text-slate-400 break-all">christianmoryah@gmail.com</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 contact-grid">
+                <a href="mailto:christianmoryah@gmail.com"
+                    class="card p-6 rounded-2xl hover:scale-105 transition-transform">
+                    <i class="fas fa-envelope text-2xl gradient-text mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">Email</h3>
+                    <p class="text-slate-400 break-all text-sm">christianmoryah@gmail.com</p>
                 </a>
-                <a href="tel:+556120201350" class="card p-8 rounded-2xl hover:scale-105 transition-transform">
-                    <i class="fas fa-phone text-4xl gradient-text mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Telefone</h3>
-                    <p class="text-slate-400">+55 61 2020-1350</p>
+
+                <a href="https://wa.me/556198128604" class="card p-6 rounded-2xl hover:scale-105 transition-transform"
+                    target="_blank">
+                    <i class="fab fa-whatsapp text-2xl gradient-text mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">Whatsapp</h3>
+                    <p class="text-slate-400 text-sm">+55 61 9812-8604</p>
                 </a>
-                <a href="https://linkedin.com/in/christianmoryah" target="_blank" class="card p-8 rounded-2xl hover:scale-105 transition-transform">
-                    <i class="fab fa-linkedin text-4xl gradient-text mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">LinkedIn</h3>
-                    <p class="text-slate-400">christianmoryah</p>
+                <a href="https://www.linkedin.com/in/christianmoryah/" target="_blank"
+                    class="card p-6 rounded-2xl hover:scale-105 transition-transform">
+                    <i class="fab fa-linkedin text-2xl gradient-text mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">LinkedIn</h3>
+                    <p class="text-slate-400 text-sm">Christian Miranda</p>
+                </a>
+                <a href="https://github.com/chris-redfield" target="_blank"
+                    class="card p-6 rounded-2xl hover:scale-105 transition-transform">
+                    <i class="fab fa-github text-2xl gradient-text mb-4"></i>
+                    <h3 class="text-lg font-bold mb-2">GitHub</h3>
+                    <p class="text-slate-400 text-sm">Christian Miranda</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-8 px-6 border-t border-slate-700/50">
-        <div class="container mx-auto text-center text-slate-400">
-            <p>&copy; 2024 Christian Miranda. Todos os direitos reservados.</p>
-        </div>
-    </footer>
-
     <!-- Projects Modal -->
     <div id="projectsModal" class="modal">
-        <div class="modal-content p-8 m-4 w-full max-w-4xl">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-bold gradient-text">Projetos</h2>
-                <button onclick="closeModal('projects')" class="text-3xl text-slate-400 hover:text-white">
+        <div class="modal-content p-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold gradient-text">Projetos</h2>
+                <button onclick="closeModal('projects')" class="text-xl text-slate-400 hover:text-white">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="space-y-6 max-h-[70vh] overflow-y-auto pr-4">
+            <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                 <!-- Cadê meu BAU -->
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">Cadê meu BAU</h3>
-                    <p class="text-slate-400 mb-3">Jan 2019 - Presente</p>
-                    <p class="text-slate-300 mb-4">
-                        Sistema simples de visualização de ônibus para ajudar pessoas que dependem de transporte público em Brasília.
+                <div class="card p-4 rounded-xl project-card">
+                    <h3 class="text-lg font-bold text-blue-400 mb-2">Cadê meu BAU</h3>
+                    <p class="text-slate-400 mb-3 text-sm">Jan 2019 - Presente</p>
+                    <p class="text-slate-300 mb-4 text-sm">
+                        Sistema simples de visualização de ônibus para ajudar pessoas que dependem de transporte público
+                        em Brasília.
                     </p>
-                    <span class="text-sm text-slate-500">Associado a Certsys Tecnologia da Informação</span>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                        <span class="text-xs text-slate-500">Associado a Certsys Tecnologia da Informação</span>
+                        <button
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Mais
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Apple Classifier -->
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">Apple Classifier</h3>
-                    <p class="text-slate-400 mb-3">Set 2018 - Presente</p>
-                    <p class="text-slate-300 mb-4">
-                        Projeto vencedor do 2º Hackathon de Deep Learning do Cotidiano. Criamos uma RESNET34 que classifica a qualidade de maçãs usando imagens multiespectrais de 4 canais (RGB + Infravermelho). Projeto desafiador desenvolvido em apenas 24 horas.
+                <div class="card p-4 rounded-xl project-card">
+                    <h3 class="text-lg font-bold text-blue-400 mb-2">Apple Classifier</h3>
+                    <p class="text-slate-400 mb-3 text-sm">Set 2018 - Presente</p>
+                    <p class="text-slate-300 mb-4 text-sm">
+                        Projeto vencedor do 2º Hackathon de Deep Learning do Cotidiano. Criamos uma RESNET34 que
+                        classifica a qualidade de maçãs usando imagens multiespectrais de 4 canais (RGB +
+                        Infravermelho). Projeto desafiador desenvolvido em apenas 24 horas.
                     </p>
                     <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLflow</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Hypothesis Testing</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">MLflow</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Hypothesis Testing</span>
                     </div>
-                    <span class="text-sm text-slate-500">Associado a Certsys Tecnologia da Informação</span>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                        <span class="text-xs text-slate-500">Associado a Certsys Tecnologia da Informação</span>
+                        <button
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Mais
+                        </button>
+                    </div>
                 </div>
 
                 <!-- dados.gov.br -->
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">dados.gov.br</h3>
-                    <p class="text-slate-400 mb-3">Nov 2010 - Presente</p>
-                    <p class="text-slate-300 mb-4">
+                <div class="card p-4 rounded-xl project-card">
+                    <h3 class="text-lg font-bold text-blue-400 mb-2">dados.gov.br</h3>
+                    <p class="text-slate-400 mb-3 text-sm">Nov 2010 - Presente</p>
+                    <p class="text-slate-300 mb-4 text-sm">
                         O catálogo e portal de dados abertos do governo brasileiro.
                     </p>
-                    <span class="text-sm text-slate-500">Associado ao Ministério da Economia</span>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                        <span class="text-xs text-slate-500">Associado ao Ministério da Economia</span>
+                        <button
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Mais
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Study on open data licensing -->
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">Estudo sobre licenciamento de dados abertos e marco legal no Brasil</h3>
-                    <p class="text-slate-400 mb-3">Mai 2013 - Jul 2015</p>
-                    <p class="text-slate-300 mb-4">
-                        O estudo examinou o marco legal no Brasil, incluindo a lei de acesso à informação e leis de direitos autorais, para determinar uma proposta de ação para que os dados públicos no Brasil fossem considerados legalmente abertos conforme a Open Definition.
+                <div class="card p-4 rounded-xl project-card">
+                    <h3 class="text-lg sm:text-xl font-bold text-blue-400 mb-2">Estudo sobre licenciamento de dados
+                        abertos e marco
+                        legal no Brasil</h3>
+                    <p class="text-slate-400 mb-3 text-sm">Mai 2013 - Jul 2015</p>
+                    <p class="text-slate-300 mb-4 text-sm">
+                        O estudo examinou o marco legal no Brasil, incluindo a lei de acesso à informação e leis de
+                        direitos autorais, para determinar uma proposta de ação para que os dados públicos no Brasil
+                        fossem considerados legalmente abertos conforme a Open Definition.
                     </p>
-                    <span class="text-sm text-slate-500">Associado ao Ministério da Economia</span>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                        <span class="text-xs text-slate-500">Associado ao Ministério da Economia</span>
+                        <button
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Mais
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Kit para dados abertos -->
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">Kit para dados abertos</h3>
-                    <p class="text-slate-400 mb-3">Mai 2014 - Out 2014</p>
-                    <p class="text-slate-300 mb-4">
-                        Um toolkit para implementação de política de dados abertos em organizações públicas. Descreve processos desde a elaboração de planos de alto nível até projetos de publicação de datasets.
+                <div class="card p-4 rounded-xl project-card">
+                    <h3 class="text-lg font-bold text-blue-400 mb-2">Kit para dados abertos</h3>
+                    <p class="text-slate-400 mb-3 text-sm">Mai 2014 - Out 2014</p>
+                    <p class="text-slate-300 mb-4 text-sm">
+                        Um toolkit para implementação de política de dados abertos em organizações públicas. Descreve
+                        processos desde a elaboração de planos de alto nível até projetos de publicação de datasets.
                     </p>
-                    <span class="text-sm text-slate-500">Associado ao Ministério da Economia</span>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                        <span class="text-xs text-slate-500">Associado ao Ministério da Economia</span>
+                        <button
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Mais
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Barra Brasil -->
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">Barra Brasil</h3>
-                    <p class="text-slate-400 mb-3">Out 2012 - Fev 2014</p>
-                    <p class="text-slate-300 mb-4">
-                        Uma barra de navegação superior carregada e atualizada dinamicamente que é um padrão obrigatório para todos os sites .gov.br. Pré-compilada a partir de HTML e CSS. Usa uma única chamada javascript cacheável de baixa largura de banda.
+                <div class="card p-4 rounded-xl project-card">
+                    <h3 class="text-lg font-bold text-blue-400 mb-2">Barra Brasil</h3>
+                    <p class="text-slate-400 mb-3 text-sm">Out 2012 - Fev 2014</p>
+                    <p class="text-slate-300 mb-4 text-sm">
+                        Uma barra de navegação superior carregada e atualizada dinamicamente que é um padrão obrigatório
+                        para todos os sites .gov.br. Pré-compilada a partir de HTML e CSS. Usa uma única chamada
+                        javascript cacheável de baixa largura de banda.
                     </p>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Mais
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Open Data API for SICONV -->
-                <div class="card p-6 rounded-xl">
-                    <h3 class="text-xl font-bold text-blue-400 mb-2">API de Dados Abertos para o Sistema Federal de Transferências Voluntárias</h3>
-                    <p class="text-slate-400 mb-3">Set 2011 - Out 2013</p>
-                    <p class="text-slate-300 mb-4">
-                        API de Dados Abertos para transparência das Transferências Federais Voluntárias (SICONV). Rastreia o processo de projetos de transferência de fundos do Governo Federal Brasileiro para governos locais e ONGs. Suporta múltiplos formatos de dados abertos, princípios RESTful e links hipermídia.
+                <div class="card p-4 rounded-xl project-card">
+                    <h3 class="text-lg font-bold text-blue-400 mb-2">API de Dados Abertos para o Sistema
+                        Federal de Transferências Voluntárias</h3>
+                    <p class="text-slate-400 mb-3 text-sm">Set 2011 - Out 2013</p>
+                    <p class="text-slate-300 mb-4 text-sm">
+                        API de Dados Abertos para transparência das Transferências Federais Voluntárias (SICONV).
+                        Rastreia o processo de projetos de transferência de fundos do Governo Federal Brasileiro para
+                        governos locais e ONGs. Suporta múltiplos formatos de dados abertos, princípios RESTful e links
+                        hipermídia.
                     </p>
-                    <span class="text-sm text-slate-500">Associado ao Ministério da Economia</span>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                        <span class="text-xs text-slate-500">Associado ao Ministério da Economia</span>
+                        <button
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Mais
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -604,129 +886,195 @@
 
     <!-- Certificates Modal -->
     <div id="certificatesModal" class="modal">
-        <div class="modal-content p-8 m-4 w-full max-w-4xl">
-            <div class="flex justify-between items-center mb-6">
-                <h2 class="text-3xl font-bold gradient-text">Certificados</h2>
-                <button onclick="closeModal('certificates')" class="text-3xl text-slate-400 hover:text-white">
+        <div class="modal-content p-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold gradient-text">Certificados</h2>
+                <button onclick="closeModal('certificates')"
+                    class="text-xl text-slate-400 hover:text-white">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="space-y-6 max-h-[70vh] overflow-y-auto pr-4">
+            <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                 <!-- Designing Machine Learning Workflows in Python -->
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-purple-400 mb-2">Designing Machine Learning Workflows in Python</h3>
-                            <p class="text-slate-400">DataCamp</p>
+                <div class="card p-4 rounded-xl certificate-card">
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-lg font-bold text-purple-400 mb-2">Designing Machine Learning
+                                Workflows in Python</h3>
+                            <p class="text-slate-400 text-sm">DataCamp</p>
                         </div>
-                        <span class="text-slate-500">Jul 2019</span>
+                        <span class="text-slate-500 text-sm">Jul 2019</span>
                     </div>
-                    <p class="text-slate-500 mb-3">Credencial: #10013317</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLflow</span>
+                    <p class="text-slate-500 mb-3 text-sm">Credencial: #10013317</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">MLflow</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Certificado
+                        </button>
                     </div>
                 </div>
 
                 <!-- Deep Learning NanoDegree -->
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-purple-400 mb-2">Deep Learning NanoDegree Program</h3>
-                            <p class="text-slate-400">Udacity</p>
+                <div class="card p-4 rounded-xl certificate-card">
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-lg font-bold text-purple-400 mb-2">Deep Learning NanoDegree
+                                Program</h3>
+                            <p class="text-slate-400 text-sm">Udacity</p>
                         </div>
-                        <span class="text-slate-500">Jan 2019</span>
+                        <span class="text-slate-500 text-sm">Jan 2019</span>
                     </div>
-                    <p class="text-slate-500 mb-3">Credencial: EEUR42QH</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Hypothesis Testing</span>
+                    <p class="text-slate-500 mb-3 text-sm">Credencial: EEUR42QH</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Hypothesis Testing</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Certificado
+                        </button>
                     </div>
                 </div>
 
                 <!-- Deep Learning Specialization -->
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-purple-400 mb-2">Deep Learning Specialization</h3>
-                            <p class="text-slate-400">Coursera</p>
+                <div class="card p-4 rounded-xl certificate-card">
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-lg font-bold text-purple-400 mb-2">Deep Learning Specialization
+                            </h3>
+                            <p class="text-slate-400 text-sm">Coursera</p>
                         </div>
-                        <span class="text-slate-500">Fev 2018</span>
+                        <span class="text-slate-500 text-sm">Fev 2018</span>
                     </div>
-                    <p class="text-slate-500">Credencial: LML8DG5S2SU5</p>
+                    <p class="text-slate-500 mb-4 text-sm">Credencial: LML8DG5S2SU5</p>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Certificado
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Sequence Models -->
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-purple-400 mb-2">Sequence Models</h3>
-                            <p class="text-slate-400">Coursera</p>
+                <div class="card p-4 rounded-xl certificate-card">
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-lg font-bold text-purple-400 mb-2">Sequence Models</h3>
+                            <p class="text-slate-400 text-sm">Coursera</p>
                         </div>
-                        <span class="text-slate-500">Fev 2018</span>
+                        <span class="text-slate-500 text-sm">Fev 2018</span>
                     </div>
-                    <p class="text-slate-500">Credencial: F5CP33BADL6G</p>
+                    <p class="text-slate-500 mb-4 text-sm">Credencial: F5CP33BADL6G</p>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Certificado
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Convolutional Neural Networks -->
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-purple-400 mb-2">Convolutional Neural Networks</h3>
-                            <p class="text-slate-400">Coursera</p>
+                <div class="card p-4 rounded-xl certificate-card">
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-lg font-bold text-purple-400 mb-2">Convolutional Neural Networks
+                            </h3>
+                            <p class="text-slate-400 text-sm">Coursera</p>
                         </div>
-                        <span class="text-slate-500">Jan 2018</span>
+                        <span class="text-slate-500 text-sm">Jan 2018</span>
                     </div>
-                    <p class="text-slate-500">Credencial: WFN8FBSMF47P</p>
+                    <p class="text-slate-500 mb-4 text-sm">Credencial: WFN8FBSMF47P</p>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Certificado
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Improving Deep Neural Networks -->
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-purple-400 mb-2">Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</h3>
-                            <p class="text-slate-400">Coursera</p>
+                <div class="card p-4 rounded-xl certificate-card">
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-lg font-bold text-purple-400 mb-2">Improving Deep Neural
+                                Networks:
+                                Hyperparameter tuning, Regularization and Optimization</h3>
+                            <p class="text-slate-400 text-sm">Coursera</p>
                         </div>
-                        <span class="text-slate-500">Dez 2017</span>
+                        <span class="text-slate-500 text-sm">Dez 2017</span>
                     </div>
-                    <p class="text-slate-500 mb-3">Credencial: HZ66NPXXXZBT</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Hypothesis Testing</span>
+                    <p class="text-slate-500 mb-3 text-sm">Credencial: HZ66NPXXXZBT</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="skill-tag px-3 py-1 rounded-full text-xs">Hypothesis Testing</span>
+                    </div>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Certificado
+                        </button>
                     </div>
                 </div>
 
                 <!-- Structuring Machine Learning Projects -->
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-purple-400 mb-2">Structuring Machine Learning Projects</h3>
-                            <p class="text-slate-400">Coursera</p>
+                <div class="card p-4 rounded-xl certificate-card">
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-lg font-bold text-purple-400 mb-2">Structuring Machine Learning
+                                Projects
+                            </h3>
+                            <p class="text-slate-400 text-sm">Coursera</p>
                         </div>
-                        <span class="text-slate-500">Dez 2017</span>
+                        <span class="text-slate-500 text-sm">Dez 2017</span>
                     </div>
-                    <p class="text-slate-500">Credencial: PGGE9RZHF57R</p>
+                    <p class="text-slate-500 mb-4 text-sm">Credencial: PGGE9RZHF57R</p>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Certificado
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Neural Networks and Deep Learning -->
-                <div class="card p-6 rounded-xl">
-                    <div class="flex items-start justify-between mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-purple-400 mb-2">Neural Networks and Deep Learning</h3>
-                            <p class="text-slate-400">Coursera</p>
+                <div class="card p-4 rounded-xl certificate-card">
+                    <div class="flex flex-col mb-4">
+                        <div class="mb-2">
+                            <h3 class="text-lg font-bold text-purple-400 mb-2">Neural Networks and Deep
+                                Learning</h3>
+                            <p class="text-slate-400 text-sm">Coursera</p>
                         </div>
-                        <span class="text-slate-500">Nov 2017</span>
+                        <span class="text-slate-500 text-sm">Nov 2017</span>
                     </div>
-                    <p class="text-slate-500">Credencial: KBDZWVUZFCZE</p>
+                    <p class="text-slate-500 mb-4 text-sm">Credencial: KBDZWVUZFCZE</p>
+                    <div class="flex justify-end">
+                        <button
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
+                            Ver Certificado
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // GSAP Animations
+        // Make sections visible immediately
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            });
+        });
+
+        // GSAP Animations - versão otimizada para velocidade
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animate sections on scroll
+        // Animate sections on scroll - versão mais rápida
         gsap.utils.toArray('.section').forEach(section => {
-            gsap.fromTo(section, 
+            gsap.fromTo(section,
                 {
                     opacity: 0,
                     y: 50
@@ -734,7 +1082,7 @@
                 {
                     opacity: 1,
                     y: 0,
-                    duration: 1,
+                    duration: 0.6,
                     scrollTrigger: {
                         trigger: section,
                         start: 'top 80%',
@@ -745,13 +1093,13 @@
             );
         });
 
-        // Animate timeline items
+        // Animate timeline items - versão mais rápida
         gsap.utils.toArray('.timeline-item').forEach((item, index) => {
             gsap.from(item, {
                 opacity: 0,
                 x: -50,
-                duration: 0.8,
-                delay: index * 0.1,
+                duration: 0.5,
+                delay: index * 0.05,
                 scrollTrigger: {
                     trigger: item,
                     start: 'top 85%',
@@ -760,13 +1108,13 @@
             });
         });
 
-        // Animate skill tags
+        // Animate skill tags - versão mais rápida
         gsap.utils.toArray('.skill-tag').forEach((tag, index) => {
             gsap.from(tag, {
                 opacity: 0,
                 scale: 0,
-                duration: 0.3,
-                delay: index * 0.05,
+                duration: 0.2,
+                delay: index * 0.02,
                 scrollTrigger: {
                     trigger: tag,
                     start: 'top 90%',
@@ -786,7 +1134,7 @@
                         behavior: 'smooth'
                     });
                     // Close mobile menu if open
-                    document.getElementById('mobileMenu').classList.add('hidden');
+                    closeMobileMenu();
                 }
             });
         });
@@ -794,40 +1142,67 @@
         // Mobile menu toggle
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-        
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        menuBtn.addEventListener('click', openMobileMenu);
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
 
         // Close mobile menu on link click
         document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+            link.addEventListener('click', closeMobileMenu);
         });
 
-        // Modal functions
+        // Modal functions - versão corrigida e mais rápida
         function openModal(type) {
             const modal = document.getElementById(type + 'Modal');
+
+            // Fecha qualquer modal aberto primeiro
+            document.querySelectorAll('.modal.active').forEach(openModal => {
+                openModal.classList.remove('active');
+            });
+
+            // Abre o modal solicitado
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            // Animate modal content
-            gsap.from(modal.querySelector('.modal-content'), {
-                scale: 0.8,
-                opacity: 0,
-                duration: 0.3,
-                ease: 'back.out(1.7)'
-            });
+
+            // Animate modal content - versão mais rápida
+            gsap.fromTo(modal.querySelector('.modal-content'),
+                {
+                    scale: 0.8,
+                    opacity: 0
+                },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.2,
+                    ease: 'power2.out'
+                }
+            );
         }
 
         function closeModal(type) {
             const modal = document.getElementById(type + 'Modal');
-            
+
             gsap.to(modal.querySelector('.modal-content'), {
                 scale: 0.8,
                 opacity: 0,
-                duration: 0.2,
+                duration: 0.15,
                 onComplete: () => {
                     modal.classList.remove('active');
                     document.body.style.overflow = 'auto';
@@ -852,6 +1227,7 @@
                     const type = modal.id.replace('Modal', '');
                     closeModal(type);
                 });
+                closeMobileMenu();
             }
         });
 
@@ -859,7 +1235,7 @@
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.nav-link');
-            
+
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -876,6 +1252,20 @@
                 }
             });
         });
+
+        // Adicionar funcionalidade aos botões "Ver Mais" e "Ver Certificado"
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('Ver Mais') || button.textContent.includes('Ver Certificado')) {
+                button.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    // Aqui você pode adicionar a lógica para redirecionar para a página do projeto/certificado
+                });
+            }
+        });
+
+        // Melhorias de toque para dispositivos móveis
+        document.addEventListener('touchstart', function() {}, {passive: true});
     </script>
 </body>
+
 </html>
