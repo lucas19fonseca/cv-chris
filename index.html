@@ -1,1119 +1,781 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christian Miranda</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Christian Miranda - ML Engineer Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Inter', sans-serif;
-            background: #000000;
-            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* Minimal decorative elements */
-        .minimal-bg {
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
+        .gradient-text {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .timeline-line {
-            position: relative;
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .timeline-line::before {
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .skill-tag {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 1rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item::before {
             content: '';
             position: absolute;
             left: 0;
             top: 0;
+            bottom: 0;
             width: 2px;
-            height: 100%;
-            background: linear-gradient(to bottom, #ffffff, #666666);
-            opacity: 0.2;
+            background: linear-gradient(180deg, #3b82f6 0%, #8b5cf6 100%);
         }
 
-        /* Clean scrollbar */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
         ::-webkit-scrollbar {
             width: 10px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #0a0a0a;
+            background: #0f172a;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #34d399;
+            background: linear-gradient(180deg, #3b82f6 0%, #8b5cf6 100%);
             border-radius: 5px;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #10b981;
+        .floating {
+            animation: floating 3s ease-in-out infinite;
         }
 
-        .skill-bar {
-            transition: width 1.5s ease-out;
-        }
-
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(52, 211, 153, 0.2);
-        }
-
-        .project-icon,
-        .education-icon {
-            font-size: 2.5rem;
-        }
-
-        /* Progress bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #34d399, #10b981);
-            z-index: 1000;
-            transition: width 0.2s ease;
-        }
-
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: #34d399;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: #10b981;
-            transform: translateY(-3px);
-        }
-
-        /* Active nav link */
-        .nav-link.active {
-            color: #34d399;
-            font-weight: 600;
-        }
-
-        /* Loading animation */
-        .loading-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #34d399, #10b981);
-            z-index: 1001;
-            transition: width 0.4s ease;
-        }
-
-        /* Improved focus states for accessibility */
-        a:focus, button:focus {
-            outline: 2px solid #34d399;
-            outline-offset: 2px;
-        }
-
-        /* Enhanced hover effects */
-        .social-link {
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Improved mobile menu */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
-
-        /* Enhanced section spacing */
-        section {
-            scroll-margin-top: 80px;
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
-
-<body class="minimal-bg">
-    <!-- Loading bar -->
-    <div class="loading-bar" id="loadingBar"></div>
-
-    <!-- Progress bar -->
-    <div class="progress-bar" id="progressBar"></div>
-
-    <!-- Back to top button -->
-    <div class="back-to-top" id="backToTop">
-        <i class="fas fa-arrow-up"></i>
-    </div>
-
+<body>
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-md z-50 border-b border-white/10" id="navbar">
-        <div class="max-w-6xl mx-auto px-4 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-white">
-                    <span>Christian Miranda</span>
-                </div>
+    <nav class="fixed top-0 w-full z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold gradient-text">CM</h1>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-400 hover:text-emerald-400 transition nav-link" data-section="about">About</a>
-                    <a href="#experience" class="text-gray-400 hover:text-emerald-400 transition nav-link" data-section="experience">Experience</a>
-                    <a href="#projects" class="text-gray-400 hover:text-emerald-400 transition nav-link" data-section="projects">Projects</a>
-                    <a href="#skills" class="text-gray-400 hover:text-emerald-400 transition nav-link" data-section="skills">Skills</a>
-                    <a href="#education" class="text-gray-400 hover:text-emerald-400 transition nav-link" data-section="education">Education</a>
+                    <a href="#home" class="nav-link text-slate-300 hover:text-white">Home</a>
+                    <a href="#about" class="nav-link text-slate-300 hover:text-white">Sobre</a>
+                    <a href="#experience" class="nav-link text-slate-300 hover:text-white">Experiência</a>
+                    <a href="#skills" class="nav-link text-slate-300 hover:text-white">Skills</a>
+                    <a href="#contact" class="nav-link text-slate-300 hover:text-white">Contato</a>
                 </div>
-                <button class="md:hidden text-white focus:outline-none" id="mobileMenuBtn" aria-label="Toggle menu">
-                    <i class="fas fa-bars text-xl"></i>
+                <button id="menuBtn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="fixed inset-0 bg-black/95 backdrop-blur-md z-40 mobile-menu" id="mobileMenu">
-        <div class="flex flex-col items-center justify-center h-full space-y-8 text-2xl">
-            <a href="#about" class="text-gray-400 hover:text-emerald-400 transition mobile-link" data-section="about">About</a>
-            <a href="#experience" class="text-gray-400 hover:text-emerald-400 transition mobile-link" data-section="experience">Experience</a>
-            <a href="#projects" class="text-gray-400 hover:text-emerald-400 transition mobile-link" data-section="projects">Projects</a>
-            <a href="#skills" class="text-gray-400 hover:text-emerald-400 transition mobile-link" data-section="skills">Skills</a>
-            <a href="#education" class="text-gray-400 hover:text-emerald-400 transition mobile-link" data-section="education">Education</a>
+    <div id="mobileMenu" class="fixed inset-0 bg-slate-900 z-40 hidden">
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <a href="#home" class="text-2xl text-slate-300 hover:text-white mobile-link">Home</a>
+            <a href="#about" class="text-2xl text-slate-300 hover:text-white mobile-link">Sobre</a>
+            <a href="#experience" class="text-2xl text-slate-300 hover:text-white mobile-link">Experiência</a>
+            <a href="#skills" class="text-2xl text-slate-300 hover:text-white mobile-link">Skills</a>
+            <a href="#contact" class="text-2xl text-slate-300 hover:text-white mobile-link">Contato</a>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center px-4 pt-20" id="hero">
-        <div class="max-w-4xl text-center">
-            <div class="mb-8" id="heroIcon">
-                <i class="fa-solid fa-dinosaur text-6xl md:text-7xl text-white"></i>
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="container mx-auto text-center">
+            <div class="floating mb-8">
+                <div class="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1">
+                    <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
+                        <i class="fas fa-brain text-5xl gradient-text"></i>
+                    </div>
+                </div>
             </div>
-
-            <h1 class="text-5xl md:text-7xl font-black mb-4 tracking-tight opacity-0" id="heroName">
-                <span class="text-white">Christian Miranda</span>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                Christian Miranda
             </h1>
-            <h2 class="text-2xl md:text-3xl text-gray-400 mb-6 font-light opacity-0" id="heroTitle">
-                ML Engineer • Data Scientist • MLOps
+            <h2 class="text-2xl md:text-4xl gradient-text mb-6">
+                Senior Machine Learning Engineer
             </h2>
-            <p class="text-lg md:text-xl text-gray-500 mb-8 font-light opacity-0" id="heroTagline">
-                10+ years evolving through the tech landscape
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-8">
+                +10 anos de experiência em engenharia de software | 7 anos em Data Science + ML Engineering | Especialista em MLOps, Computer Vision, Transformers e LLMs
             </p>
-            <p class="text-gray-600 mb-8 opacity-0 flex items-center justify-center gap-2" id="heroLocation">
-                <i class="fas fa-location-dot"></i>
-                <span>Remote • Montevideo, Uruguay</span>
-            </p>
-            <div class="flex justify-center gap-4 opacity-0" id="heroLinks">
-                <a href="https://www.linkedin.com/in/christianmoryah/" target="_blank"
-                    class="px-6 py-3 bg-emerald-500 text-white hover:bg-emerald-600 rounded-lg font-semibold transition flex items-center gap-2 social-link">
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#contact" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full text-white font-semibold hover:shadow-lg hover:shadow-blue-500/50 transition-all">
+                    Entre em Contato
+                </a>
+                <button onclick="openModal('projects')" class="px-8 py-3 border-2 border-blue-500 rounded-full text-white font-semibold hover:bg-blue-500/10 transition-all">
+                    Ver Projetos
+                </button>
+                <button onclick="openModal('certificates')" class="px-8 py-3 border-2 border-purple-500 rounded-full text-white font-semibold hover:bg-purple-500/10 transition-all">
+                    Ver Certificados
+                </button>
+            </div>
+            <div class="flex justify-center gap-6 mt-8">
+                <a href="https://linkedin.com/in/christianmoryah" target="_blank" class="text-3xl text-slate-400 hover:text-blue-500 transition-colors">
                     <i class="fab fa-linkedin"></i>
-                    LinkedIn
                 </a>
-                <a href="https://github.com/chris-redfield" target="_blank"
-                    class="px-6 py-3 border border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-black rounded-lg font-semibold transition flex items-center gap-2 social-link">
-                    <i class="fab fa-github"></i>
-                    GitHub
-                </a>
-                <a href="mailto:christian@example.com"
-                    class="px-6 py-3 border border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-black rounded-lg font-semibold transition flex items-center gap-2 social-link">
+                <a href="mailto:christianmoryah@gmail.com" class="text-3xl text-slate-400 hover:text-blue-500 transition-colors">
                     <i class="fas fa-envelope"></i>
-                    Email
+                </a>
+                <a href="tel:+556120201350" class="text-3xl text-slate-400 hover:text-blue-500 transition-colors">
+                    <i class="fas fa-phone"></i>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="py-20 px-4" id="about">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-black mb-8 text-center text-white">
-                About
-            </h2>
-            <div class="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10 about-card">
-                <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">
-                    Evolved from Software Engineer to ML/AI specialist over a <span class="text-emerald-400 font-semibold">10+
-                        year journey</span>. Currently working with cutting-edge LLMs, MLOps, and neuromorphic
-                    techniques.
-                </p>
-                <div class="grid md:grid-cols-2 gap-6 mt-8">
-                    <div class="bg-black/50 p-6 rounded-xl border border-white/10 card-hover">
-                        <div class="text-3xl mb-2"><i class="fas fa-code text-emerald-400"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">7+ Years</h3>
-                        <p class="text-gray-400">Data Science & ML Engineering</p>
-                    </div>
-                    <div class="bg-black/50 p-6 rounded-xl border border-white/10 card-hover">
-                        <div class="text-3xl mb-2"><i class="fas fa-graduation-cap text-emerald-400"></i></div>
-                        <h3 class="text-xl font-bold text-white mb-2">Master's Degree</h3>
-                        <p class="text-gray-400">Mechatronics & AI (In Progress)</p>
+    <section id="about" class="section py-20 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">Sobre Mim</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card p-8 rounded-2xl">
+                    <i class="fas fa-graduation-cap text-4xl gradient-text mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Formação</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-lg font-semibold text-blue-400">Master of Science</h4>
+                            <p class="text-slate-400">Mechatronics, Robotics, and Automation Engineering + AI</p>
+                            <p class="text-slate-500">Universidade de Brasília | 2022 - 2024</p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-blue-400">Bachelor's Degree</h4>
+                            <p class="text-slate-400">Computer Science</p>
+                            <p class="text-slate-500">UniCEUB | 2005 - 2009</p>
+                        </div>
                     </div>
                 </div>
+                <div class="card p-8 rounded-2xl">
+                    <i class="fas fa-map-marker-alt text-4xl gradient-text mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Contato</h3>
+                    <div class="space-y-3 text-slate-400">
+                        <p><i class="fas fa-envelope text-blue-500 mr-3"></i>christianmoryah@gmail.com</p>
+                        <p><i class="fas fa-phone text-blue-500 mr-3"></i>+55 61 2020-1350</p>
+                        <p><i class="fas fa-map-pin text-blue-500 mr-3"></i>Brasília, Brasil</p>
+                        <p><i class="fab fa-linkedin text-blue-500 mr-3"></i>linkedin.com/in/christianmoryah</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-8 rounded-2xl mt-8">
+                <h3 class="text-2xl font-bold mb-4 gradient-text">Resumo Profissional</h3>
+                <p class="text-lg text-slate-300 leading-relaxed">
+                    Engenheiro de Machine Learning com mais de 10 anos de experiência em desenvolvimento de software e 7 anos focado em Data Science e ML Engineering. 
+                    Especialista em MLOps, Computer Vision, e Large Language Models (LLMs). Atualmente cursando mestrado em Mecatrônica e Robótica com foco em IA. 
+                    Experiência comprovada em automação de plataformas de pesquisa em ML, otimização de modelos transformers, e implementação de soluções de visão computacional. 
+                    Contribuí significativamente para projetos governamentais no Brasil, incluindo a política de dados abertos e infraestrutura de dados do governo federal.
+                </p>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section class="py-20 px-4 bg-zinc-950/50" id="experience">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-black mb-12 text-center text-white">
-                Experience
-            </h2>
-
-            <div class="space-y-8 timeline-line pl-8 md:pl-12">
-                <!-- Job 1 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-zinc-900/50 backdrop-blur-sm rounded-xl p-6 border border-white/10 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">Senior ML Engineer</h3>
-                                <p class="text-xl text-gray-300">Tryolabs</p>
-                            </div>
-                            <span class="text-gray-500 text-sm">Oct 2024 - Present</span>
+    <section id="experience" class="section py-20 px-6 bg-slate-900/30">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">Experiência Profissional</h2>
+            <div class="space-y-8">
+                <!-- Tryolabs -->
+                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
+                    <div class="absolute left-0 top-8 w-4 h-4 bg-blue-500 rounded-full"></div>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Senior Machine Learning Engineer</h3>
+                            <p class="text-xl text-blue-400">Tryolabs</p>
                         </div>
-                        <p class="text-gray-400 mb-3 flex items-center gap-2">
-                            <i class="fas fa-location-dot"></i>
-                            Remote, Montevideo, Uruguay
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">Machine Learning</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">MLOps</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">LLMs</span>
-                        </div>
+                        <span class="text-slate-400 mt-2 md:mt-0">Out 2024 - Presente</span>
+                    </div>
+                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Montevidéu, Uruguai (Remoto)</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Machine Learning</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLOps</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">LLMs</span>
                     </div>
                 </div>
 
-                <!-- Job 2 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">ML Research Engineer</h3>
-                                <p class="text-xl text-slate-300">Numenta</p>
-                            </div>
-                            <span class="text-slate-400 text-sm">Nov 2021 - Oct 2024</span>
+                <!-- Numenta -->
+                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
+                    <div class="absolute left-0 top-8 w-4 h-4 bg-purple-500 rounded-full"></div>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">ML Research Engineer</h3>
+                            <p class="text-xl text-purple-400">Numenta</p>
                         </div>
-                        <p class="text-slate-400 mb-3 flex items-center gap-2">
-                            <i class="fas fa-location-dot"></i>
-                            Redwood City, CA
-                        </p>
-                        <ul class="text-slate-300 space-y-2 mb-4">
-                            <li>• Automating ML Research platform</li>
-                            <li>• Neuromorphic techniques & DL models</li>
-                            <li>• Model surgery on transformers/LLMs</li>
-                            <li>• Vision Transformers</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">PyTorch</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">Hypothesis
-                                Testing</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">NumPy</span>
-                        </div>
+                        <span class="text-slate-400 mt-2 md:mt-0">Nov 2021 - Out 2024</span>
+                    </div>
+                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Redwood City, CA, USA</p>
+                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4">
+                        <li>Automação de plataforma de pesquisa em ML</li>
+                        <li>Técnicas neuromórficas para modelos de Deep Learning</li>
+                        <li>Cirurgia de modelos em transformers e LLMs</li>
+                        <li>Fine-tuning e otimização de LLMs</li>
+                        <li>Vision Transformers</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PyTorch</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">NumPy</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Pandas</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Matplotlib</span>
                     </div>
                 </div>
 
-                <!-- Job 3 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">Data Engineer</h3>
-                                <p class="text-xl text-slate-300">Ministério da Economia</p>
-                            </div>
-                            <span class="text-slate-400 text-sm">Jan 2021 - Jan 2022</span>
+                <!-- Facily -->
+                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
+                    <div class="absolute left-0 top-8 w-4 h-4 bg-blue-500 rounded-full"></div>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Data Scientist / ML Engineer</h3>
+                            <p class="text-xl text-blue-400">Facily</p>
                         </div>
-                        <p class="text-slate-400 mb-3 flex items-center gap-2">
-                            <i class="fas fa-clock"></i>
-                            Part-time • Federal Government
-                        </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">Apache
-                                Airflow</span>
-                            <span
-                                class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">SQL</span>
+                        <span class="text-slate-400 mt-2 md:mt-0">Fev 2021 - Out 2021</span>
+                    </div>
+                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Brasil</p>
+                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4">
+                        <li>Sistema de recomendação empresarial com A/B testing</li>
+                        <li>Previsão de renda média baseada em geolocalização</li>
+                        <li>Análise de segmentação</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Spark</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Docker</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">GCP</span>
+                    </div>
+                </div>
+
+                <!-- Ministério da Economia -->
+                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
+                    <div class="absolute left-0 top-8 w-4 h-4 bg-green-500 rounded-full"></div>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">IT Analyst & Data Engineer</h3>
+                            <p class="text-xl text-green-400">Ministério da Economia</p>
                         </div>
+                        <span class="text-slate-400 mt-2 md:mt-0">Abr 2010 - Jan 2022</span>
+                    </div>
+                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-green-500 mr-2"></i>Brasília, Brasil</p>
+                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4">
+                        <li>Design da Política de Dados Abertos do Brasil</li>
+                        <li>Design da Infraestrutura de Dados Abertos do Brasil</li>
+                        <li>Desenvolvimento de APIs RESTful de Dados Abertos</li>
+                        <li>Deploy do Catálogo de Dados Abertos do Brasil</li>
+                        <li>Pipelines Airflow + experimentos de Data Science</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Apache Airflow</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">SQL</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Java</span>
                     </div>
                 </div>
 
-                <!-- Job 4 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">Data Scientist / ML Engineer</h3>
-                                <p class="text-xl text-slate-300">Facily</p>
-                            </div>
-                            <span class="text-slate-400 text-sm">Feb 2021 - Oct 2021</span>
+                <!-- behup -->
+                <div class="card p-8 rounded-2xl relative pl-12 timeline-item">
+                    <div class="absolute left-0 top-8 w-4 h-4 bg-purple-500 rounded-full"></div>
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Data Scientist / ML Engineer</h3>
+                            <p class="text-xl text-purple-400">behup</p>
                         </div>
-                        <ul class="text-slate-300 space-y-2 mb-4">
-                            <li>• Recommendation engine with A/B testing</li>
-                            <li>• Geolocation-based income forecasting</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">Python</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">Spark</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">Docker</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">GCP</span>
-                        </div>
+                        <span class="text-slate-400 mt-2 md:mt-0">Jun 2019 - Jan 2021</span>
                     </div>
-                </div>
-
-                <!-- Job 5 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">Data Scientist / ML Engineer</h3>
-                                <p class="text-xl text-slate-300">behup</p>
-                            </div>
-                            <span class="text-slate-400 text-sm">Jun 2019 - Jan 2021</span>
-                        </div>
-                        <ul class="text-slate-300 space-y-2 mb-4">
-                            <li>• Speech-to-text pipeline</li>
-                            <li>• NLP Services & text punctuation</li>
-                            <li>• ML models deployment</li>
-                            <li>• PowerBI dashboards</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2">
-                            <span
-                                class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">PyTorch</span>
-                            <span
-                                class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">MLflow</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-sm">NLP</span>
-                        </div>
+                    <p class="text-slate-400 mb-4"><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Brasília, Brasil</p>
+                    <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4">
+                        <li>Pipeline de Speech-to-Text</li>
+                        <li>Serviço de pontuação de texto</li>
+                        <li>Múltiplos serviços de NLP</li>
+                        <li>Deploy de modelos ML em APIs de produção</li>
+                        <li>Dashboards Power BI</li>
+                    </ul>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PyTorch</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">NLP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLflow</span>
                     </div>
-                </div>
-
-                <!-- Job 6 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">Data Scientist / ML Engineer</h3>
-                                <p class="text-xl text-slate-300">Certsys</p>
-                            </div>
-                            <span class="text-slate-400 text-sm">Jun 2018 - Jun 2019</span>
-                        </div>
-                        <ul class="text-slate-300 space-y-2 mb-4">
-                            <li>• Sentiment classification</li>
-                            <li>• Forecasting service</li>
-                            <li>• Chatbot orchestrator</li>
-                            <li>• Business location recommendation</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 7 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">IT Analyst (SWE)</h3>
-                                <p class="text-xl text-slate-300">Ministério da Economia</p>
-                            </div>
-                            <span class="text-slate-400 text-sm">Apr 2010 - Jan 2021</span>
-                        </div>
-                        <p class="text-slate-400 mb-3 flex items-center gap-2">
-                            <i class="fas fa-building"></i>
-                            Federal Government • 11 years
-                        </p>
-                        <ul class="text-slate-300 space-y-2 mb-4">
-                            <li>• Designed Brazil's Open Data Policy & Infrastructure</li>
-                            <li>• RESTful Open Data APIs (Python/Java)</li>
-                            <li>• Airflow pipelines</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 8 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">IT Governance Coordinator</h3>
-                                <p class="text-xl text-slate-300">Ministério da Cultura</p>
-                            </div>
-                            <span class="text-slate-400 text-sm">May 2015 - Oct 2016</span>
-                        </div>
-                        <ul class="text-slate-300 space-y-2 mb-4">
-                            <li>• IT Strategic Plan 2016-2017</li>
-                            <li>• 42 projects published on GitHub</li>
-                            <li>• Lean project management (Prince2)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Job 9 -->
-                <div class="relative experience-item">
-                    <div class="absolute -left-8 md:-left-12 w-4 h-4 bg-emerald-500 rounded-full"></div>
-                    <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover">
-                        <div class="flex flex-wrap justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-400">Software Engineer</h3>
-                                <p class="text-xl text-slate-300">Foton</p>
-                            </div>
-                            <span class="text-slate-400 text-sm">Oct 2008 - Oct 2009</span>
-                        </div>
-                        <ul class="text-slate-300 space-y-2 mb-4">
-                            <li>• Mission-critical banking systems</li>
-                            <li>• Performance optimization</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="py-20 px-4" id="projects">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-black mb-12 text-center">
-                <span class="text-emerald-500">Featured Projects</span>
-            </h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Project 1 -->
-                <div
-                    class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover project-card">
-                    <div class="text-emerald-500 mb-4 project-icon">
-                        <i class="fas fa-bus"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-2">Cadê meu BAU</h3>
-                    <p class="text-slate-400 mb-3">2019 - Present</p>
-                    <p class="text-slate-300 mb-4">Bus visualization system for Brasília public transportation</p>
-                    <p class="text-amber-500 italic text-sm flex items-center gap-2">
-                        <i class="fas fa-tools"></i>
-                        "WIP, but seems promising :D"
-                    </p>
-                </div>
-
-                <!-- Project 2 -->
-                <div
-                    class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover project-card">
-                    <div class="text-emerald-500 mb-4 project-icon">
-                        <i class="fas fa-apple-whole"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-2">Apple Classifier</h3>
-                    <p class="text-slate-400 mb-3">2018</p>
-                    <p class="text-slate-300 mb-4">Winner: 2nd Cotidiano's Deep Learning Hackathon. RESNET34 for apple
-                        quality classification with 4-channel multispectral images (RGB + InfraRed)</p>
-                    <p class="text-amber-500 italic text-sm flex items-center gap-2">
-                        <i class="fas fa-trophy"></i>
-                        24-hour challenge
-                    </p>
-                </div>
-
-                <!-- Project 3 -->
-                <div
-                    class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover project-card">
-                    <div class="text-emerald-500 mb-4 project-icon">
-                        <i class="fas fa-flag"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-2">dados.gov.br</h3>
-                    <p class="text-slate-400 mb-3">2010 - Present</p>
-                    <p class="text-slate-300">Brazilian open government data catalog</p>
-                </div>
-
-                <!-- Project 4 -->
-                <div
-                    class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover project-card">
-                    <div class="text-emerald-500 mb-4 project-icon">
-                        <i class="fas fa-scale-balanced"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-2">Open Data Legal Framework</h3>
-                    <p class="text-slate-400 mb-3">2013 - 2015</p>
-                    <p class="text-slate-300">Legal framework analysis for open data in Brazil</p>
-                </div>
-
-                <!-- Project 5 -->
-                <div
-                    class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 card-hover project-card">
-                    <div class="text-emerald-500 mb-4 project-icon">
-                        <i class="fas fa-toolbox"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-2">Open Data Toolkit</h3>
-                    <p class="text-slate-400 mb-3">2014</p>
-                    <p class="text-slate-300">Implementation guide for open data policies</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section class="py-20 px-4 bg-slate-900/30" id="skills">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-black mb-12 text-center">
-                <span class="text-emerald-500">Skills</span>
-                <span class="text-slate-600 text-xl ml-2">// Tech DNA</span>
-            </h2>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Core ML/AI -->
-                <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 skills-card">
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-6">Core ML/AI</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300 flex items-center gap-2">
-                                    <i class="fas fa-star text-amber-400"></i>
-                                    MLOps
-                                </span>
-                                <span class="text-slate-400">Expert</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="95"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300 flex items-center gap-2">
-                                    <i class="fas fa-star text-amber-400"></i>
-                                    Large Language Models
-                                </span>
-                                <span class="text-slate-400">Expert</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="95"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">PyTorch</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="90"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Machine Learning</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="90"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Computer Vision</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="85"></div>
-                            </div>
-                        </div>
+    <section id="skills" class="section py-20 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text">Competências Técnicas</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-8 rounded-2xl">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Machine Learning</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PyTorch</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">LLMs</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Computer Vision</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">NLP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLOps</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLflow</span>
                     </div>
                 </div>
-
-                <!-- Data Science -->
-                <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 skills-card">
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-6">Data Science</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Pandas</span>
-                                <span class="text-slate-400">Expert</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="95"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">NumPy</span>
-                                <span class="text-slate-400">Expert</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="95"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Matplotlib</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="85"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">MLflow</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="85"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Hypothesis Testing</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="80"></div>
-                            </div>
-                        </div>
+                <div class="card p-8 rounded-2xl">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Programação</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Python</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Java</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">JavaScript</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Node.js</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">SQL</span>
                     </div>
                 </div>
-
-                <!-- Engineering -->
-                <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 skills-card">
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-6">Engineering</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Python (LinkedIn Certified)</span>
-                                <span class="text-slate-400">Expert</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="95"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">AWS</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="85"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Docker</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="90"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">DevOps</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="85"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Linux</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="90"></div>
-                            </div>
-                        </div>
+                <div class="card p-8 rounded-2xl">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Data Science</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">NumPy</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Pandas</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Matplotlib</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Hypothesis Testing</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Spark</span>
                     </div>
                 </div>
-
-                <!-- Legacy/Government -->
-                <div class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 skills-card">
-                    <h3 class="text-2xl font-bold text-emerald-500 mb-6">Legacy & Governance</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Open Data (21 endorsements)</span>
-                                <span class="text-slate-400">Expert</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="95"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Scrum (16 endorsements)</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="90"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between mb-2">
-                                <span class="text-slate-300">Open Government</span>
-                                <span class="text-slate-400">Advanced</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="skill-bar h-full bg-gradient-to-r from-emerald-500 to-emerald-400"
-                                    data-width="85"></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Java</span>
-                            <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">Node.js</span>
-                            <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">PostgreSQL</span>
-                            <span class="px-3 py-1 bg-slate-700 text-slate-300 rounded-full text-sm">MySQL</span>
-                        </div>
+                <div class="card p-8 rounded-2xl">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Cloud & DevOps</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">AWS</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">GCP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Docker</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Apache Airflow</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">DevOps</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- Certifications -->
-            <div class="mt-12">
-                <h3 class="text-3xl font-bold text-center text-emerald-500 mb-8">Certifications</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div
-                        class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 text-center cert-card card-hover">
-                        <div class="text-3xl mb-2 text-emerald-500">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <p class="text-slate-300 font-semibold">Deep Learning Specialization</p>
-                        <p class="text-slate-500 text-sm">Coursera</p>
+                <div class="card p-8 rounded-2xl">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-database"></i>
                     </div>
-                    <div
-                        class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 text-center cert-card card-hover">
-                        <div class="text-3xl mb-2 text-emerald-500">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <p class="text-slate-300 font-semibold">Deep Learning Nanodegree</p>
-                        <p class="text-slate-500 text-sm">Udacity</p>
+                    <h3 class="text-2xl font-bold mb-4">Banco de Dados</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PostgreSQL</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MySQL</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">SQL Server</span>
                     </div>
-                    <div
-                        class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 text-center cert-card card-hover">
-                        <div class="text-3xl mb-2 text-emerald-500">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <p class="text-slate-300 font-semibold">ML Workflows in Python</p>
-                        <p class="text-slate-500 text-sm">DataCamp</p>
+                </div>
+                <div class="card p-8 rounded-2xl">
+                    <div class="text-4xl gradient-text mb-4">
+                        <i class="fas fa-users"></i>
                     </div>
-                    <div
-                        class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-4 border border-slate-700 text-center cert-card card-hover">
-                        <div class="text-3xl mb-2 text-emerald-500">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <p class="text-slate-300 font-semibold">Sequence Models & CNN</p>
-                        <p class="text-slate-500 text-sm">Coursera</p>
+                    <h3 class="text-2xl font-bold mb-4">Metodologias</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Scrum</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PMBOK</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">PRINCE2</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">RUP</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">UML</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="py-20 px-4" id="education">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-black mb-12 text-center">
-                <span class="text-emerald-500">Education</span>
-            </h2>
-
-            <div class="space-y-6">
-                <div
-                    class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700 card-hover education-card">
-                    <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
-                        <div class="flex items-start gap-4">
-                            <div class="text-emerald-500 education-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-500">Master of Science</h3>
-                                <p class="text-xl text-slate-300">Universidade de Brasília</p>
-                                <p class="text-slate-400 mt-2">Mechatronics, Robotics & AI</p>
-                            </div>
-                        </div>
-                        <span class="text-slate-400">2022 - 2024</span>
-                    </div>
-                    <ul class="text-slate-300 space-y-1 ml-16">
-                        <li>• Focus: Computer Vision, Machine Learning, Autonomous Vehicles</li>
-                    </ul>
-                </div>
-
-                <div
-                    class="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700 card-hover education-card">
-                    <div class="flex items-start justify-between flex-wrap gap-4 mb-4">
-                        <div class="flex items-start gap-4">
-                            <div class="text-emerald-500 education-icon">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold text-emerald-500">Bachelor's Degree</h3>
-                                <p class="text-xl text-slate-300">UniCEUB</p>
-                                <p class="text-slate-400 mt-2">Computer Science</p>
-                            </div>
-                        </div>
-                        <span class="text-slate-400">2005 - 2009</span>
-                    </div>
-                </div>
+    <!-- Contact Section -->
+    <section id="contact" class="section py-20 px-6 bg-slate-900/30">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">Vamos Conversar</h2>
+            <p class="text-xl text-slate-400 mb-12">
+                Estou sempre aberto a novas oportunidades e colaborações interessantes. Entre em contato!
+            </p>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="mailto:christianmoryah@gmail.com" class="card p-8 rounded-2xl hover:scale-105 transition-transform">
+                    <i class="fas fa-envelope text-4xl gradient-text mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Email</h3>
+                    <p class="text-slate-400 break-all">christianmoryah@gmail.com</p>
+                </a>
+                <a href="tel:+556120201350" class="card p-8 rounded-2xl hover:scale-105 transition-transform">
+                    <i class="fas fa-phone text-4xl gradient-text mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Telefone</h3>
+                    <p class="text-slate-400">+55 61 2020-1350</p>
+                </a>
+                <a href="https://linkedin.com/in/christianmoryah" target="_blank" class="card p-8 rounded-2xl hover:scale-105 transition-transform">
+                    <i class="fab fa-linkedin text-4xl gradient-text mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">LinkedIn</h3>
+                    <p class="text-slate-400">christianmoryah</p>
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="py-8 px-6 border-t border-slate-700/50">
+        <div class="container mx-auto text-center text-slate-400">
+            <p>&copy; 2024 Christian Miranda. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Projects Modal -->
+    <div id="projectsModal" class="modal">
+        <div class="modal-content p-8 m-4 w-full max-w-4xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold gradient-text">Projetos</h2>
+                <button onclick="closeModal('projects')" class="text-3xl text-slate-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-6 max-h-[70vh] overflow-y-auto pr-4">
+                <!-- Cadê meu BAU -->
+                <div class="card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">Cadê meu BAU</h3>
+                    <p class="text-slate-400 mb-3">Jan 2019 - Presente</p>
+                    <p class="text-slate-300 mb-4">
+                        Sistema simples de visualização de ônibus para ajudar pessoas que dependem de transporte público em Brasília.
+                    </p>
+                    <span class="text-sm text-slate-500">Associado a Certsys Tecnologia da Informação</span>
+                </div>
+
+                <!-- Apple Classifier -->
+                <div class="card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">Apple Classifier</h3>
+                    <p class="text-slate-400 mb-3">Set 2018 - Presente</p>
+                    <p class="text-slate-300 mb-4">
+                        Projeto vencedor do 2º Hackathon de Deep Learning do Cotidiano. Criamos uma RESNET34 que classifica a qualidade de maçãs usando imagens multiespectrais de 4 canais (RGB + Infravermelho). Projeto desafiador desenvolvido em apenas 24 horas.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLflow</span>
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Hypothesis Testing</span>
+                    </div>
+                    <span class="text-sm text-slate-500">Associado a Certsys Tecnologia da Informação</span>
+                </div>
+
+                <!-- dados.gov.br -->
+                <div class="card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">dados.gov.br</h3>
+                    <p class="text-slate-400 mb-3">Nov 2010 - Presente</p>
+                    <p class="text-slate-300 mb-4">
+                        O catálogo e portal de dados abertos do governo brasileiro.
+                    </p>
+                    <span class="text-sm text-slate-500">Associado ao Ministério da Economia</span>
+                </div>
+
+                <!-- Study on open data licensing -->
+                <div class="card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">Estudo sobre licenciamento de dados abertos e marco legal no Brasil</h3>
+                    <p class="text-slate-400 mb-3">Mai 2013 - Jul 2015</p>
+                    <p class="text-slate-300 mb-4">
+                        O estudo examinou o marco legal no Brasil, incluindo a lei de acesso à informação e leis de direitos autorais, para determinar uma proposta de ação para que os dados públicos no Brasil fossem considerados legalmente abertos conforme a Open Definition.
+                    </p>
+                    <span class="text-sm text-slate-500">Associado ao Ministério da Economia</span>
+                </div>
+
+                <!-- Kit para dados abertos -->
+                <div class="card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">Kit para dados abertos</h3>
+                    <p class="text-slate-400 mb-3">Mai 2014 - Out 2014</p>
+                    <p class="text-slate-300 mb-4">
+                        Um toolkit para implementação de política de dados abertos em organizações públicas. Descreve processos desde a elaboração de planos de alto nível até projetos de publicação de datasets.
+                    </p>
+                    <span class="text-sm text-slate-500">Associado ao Ministério da Economia</span>
+                </div>
+
+                <!-- Barra Brasil -->
+                <div class="card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">Barra Brasil</h3>
+                    <p class="text-slate-400 mb-3">Out 2012 - Fev 2014</p>
+                    <p class="text-slate-300 mb-4">
+                        Uma barra de navegação superior carregada e atualizada dinamicamente que é um padrão obrigatório para todos os sites .gov.br. Pré-compilada a partir de HTML e CSS. Usa uma única chamada javascript cacheável de baixa largura de banda.
+                    </p>
+                </div>
+
+                <!-- Open Data API for SICONV -->
+                <div class="card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">API de Dados Abertos para o Sistema Federal de Transferências Voluntárias</h3>
+                    <p class="text-slate-400 mb-3">Set 2011 - Out 2013</p>
+                    <p class="text-slate-300 mb-4">
+                        API de Dados Abertos para transparência das Transferências Federais Voluntárias (SICONV). Rastreia o processo de projetos de transferência de fundos do Governo Federal Brasileiro para governos locais e ONGs. Suporta múltiplos formatos de dados abertos, princípios RESTful e links hipermídia.
+                    </p>
+                    <span class="text-sm text-slate-500">Associado ao Ministério da Economia</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Certificates Modal -->
+    <div id="certificatesModal" class="modal">
+        <div class="modal-content p-8 m-4 w-full max-w-4xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold gradient-text">Certificados</h2>
+                <button onclick="closeModal('certificates')" class="text-3xl text-slate-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-6 max-h-[70vh] overflow-y-auto pr-4">
+                <!-- Designing Machine Learning Workflows in Python -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-2">Designing Machine Learning Workflows in Python</h3>
+                            <p class="text-slate-400">DataCamp</p>
+                        </div>
+                        <span class="text-slate-500">Jul 2019</span>
+                    </div>
+                    <p class="text-slate-500 mb-3">Credencial: #10013317</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">MLflow</span>
+                    </div>
+                </div>
+
+                <!-- Deep Learning NanoDegree -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-2">Deep Learning NanoDegree Program</h3>
+                            <p class="text-slate-400">Udacity</p>
+                        </div>
+                        <span class="text-slate-500">Jan 2019</span>
+                    </div>
+                    <p class="text-slate-500 mb-3">Credencial: EEUR42QH</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Hypothesis Testing</span>
+                    </div>
+                </div>
+
+                <!-- Deep Learning Specialization -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-2">Deep Learning Specialization</h3>
+                            <p class="text-slate-400">Coursera</p>
+                        </div>
+                        <span class="text-slate-500">Fev 2018</span>
+                    </div>
+                    <p class="text-slate-500">Credencial: LML8DG5S2SU5</p>
+                </div>
+
+                <!-- Sequence Models -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-2">Sequence Models</h3>
+                            <p class="text-slate-400">Coursera</p>
+                        </div>
+                        <span class="text-slate-500">Fev 2018</span>
+                    </div>
+                    <p class="text-slate-500">Credencial: F5CP33BADL6G</p>
+                </div>
+
+                <!-- Convolutional Neural Networks -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-2">Convolutional Neural Networks</h3>
+                            <p class="text-slate-400">Coursera</p>
+                        </div>
+                        <span class="text-slate-500">Jan 2018</span>
+                    </div>
+                    <p class="text-slate-500">Credencial: WFN8FBSMF47P</p>
+                </div>
+
+                <!-- Improving Deep Neural Networks -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-2">Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</h3>
+                            <p class="text-slate-400">Coursera</p>
+                        </div>
+                        <span class="text-slate-500">Dez 2017</span>
+                    </div>
+                    <p class="text-slate-500 mb-3">Credencial: HZ66NPXXXZBT</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag px-3 py-1 rounded-full text-sm">Hypothesis Testing</span>
+                    </div>
+                </div>
+
+                <!-- Structuring Machine Learning Projects -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-2">Structuring Machine Learning Projects</h3>
+                            <p class="text-slate-400">Coursera</p>
+                        </div>
+                        <span class="text-slate-500">Dez 2017</span>
+                    </div>
+                    <p class="text-slate-500">Credencial: PGGE9RZHF57R</p>
+                </div>
+
+                <!-- Neural Networks and Deep Learning -->
+                <div class="card p-6 rounded-xl">
+                    <div class="flex items-start justify-between mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-purple-400 mb-2">Neural Networks and Deep Learning</h3>
+                            <p class="text-slate-400">Coursera</p>
+                        </div>
+                        <span class="text-slate-500">Nov 2017</span>
+                    </div>
+                    <p class="text-slate-500">Credencial: KBDZWVUZFCZE</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
 
-        // Simulate loading
-        window.addEventListener('load', () => {
-            gsap.to('#loadingBar', { width: '100%', duration: 0.5, onComplete: () => {
-                gsap.to('#loadingBar', { opacity: 0, duration: 0.3, delay: 0.2 });
-            }});
+        // Animate sections on scroll
+        gsap.utils.toArray('.section').forEach(section => {
+            gsap.fromTo(section, 
+                {
+                    opacity: 0,
+                    y: 50
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
         });
 
-        // Hero animations
-        gsap.timeline()
-            .to('#heroIcon', { opacity: 1, scale: 1.2, duration: 0.8, ease: 'back.out(1.7)' })
-            .to('#heroName', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-            .to('#heroTitle', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-            .to('#heroTagline', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-            .to('#heroLocation', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-            .to('#heroLinks', { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
-
-        // About section animation
-        gsap.from('.about-card', {
-            scrollTrigger: {
-                trigger: '.about-card',
-                start: 'top 80%',
-                end: 'bottom 20%',
-                toggleActions: 'play none none reverse'
-            },
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            ease: 'power3.out'
-        });
-
-        // Experience timeline animation
-        gsap.utils.toArray('.experience-item').forEach((item, index) => {
+        // Animate timeline items
+        gsap.utils.toArray('.timeline-item').forEach((item, index) => {
             gsap.from(item, {
+                opacity: 0,
+                x: -50,
+                duration: 0.8,
+                delay: index * 0.1,
                 scrollTrigger: {
                     trigger: item,
                     start: 'top 85%',
-                    end: 'bottom 20%',
                     toggleActions: 'play none none reverse'
-                },
+                }
+            });
+        });
+
+        // Animate skill tags
+        gsap.utils.toArray('.skill-tag').forEach((tag, index) => {
+            gsap.from(tag, {
                 opacity: 0,
-                x: -50,
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: 'power2.out'
-            });
-        });
-
-        // Projects animation
-        gsap.utils.toArray('.project-card').forEach((card, index) => {
-            gsap.from(card, {
+                scale: 0,
+                duration: 0.3,
+                delay: index * 0.05,
                 scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                },
-                opacity: 0,
-                y: 30,
-                scale: 0.95,
-                duration: 0.5,
-                delay: index * 0.1,
-                ease: 'back.out(1.2)'
-            });
-        });
-
-        // Skills cards animation
-        gsap.utils.toArray('.skills-card').forEach((card, index) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                },
-                opacity: 0,
-                y: 40,
-                duration: 0.6,
-                delay: index * 0.15,
-                ease: 'power2.out'
-            });
-        });
-
-        // Skill bars animation
-        gsap.utils.toArray('.skill-bar').forEach(bar => {
-            const width = bar.getAttribute('data-width');
-            gsap.to(bar, {
-                scrollTrigger: {
-                    trigger: bar,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                },
-                width: width + '%',
-                duration: 1.5,
-                ease: 'power2.out'
-            });
-        });
-
-        // Certifications animation
-        gsap.utils.toArray('.cert-card').forEach((card, index) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
+                    trigger: tag,
                     start: 'top 90%',
                     toggleActions: 'play none none reverse'
-                },
-                opacity: 0,
-                scale: 0.8,
-                duration: 0.4,
-                delay: index * 0.1,
-                ease: 'back.out(1.5)'
-            });
-        });
-
-        // Education cards animation
-        gsap.utils.toArray('.education-card').forEach((card, index) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                },
-                opacity: 0,
-                x: index % 2 === 0 ? -50 : 50,
-                duration: 0.7,
-                ease: 'power3.out'
-            });
-        });
-
-        // Navbar background on scroll
-        gsap.to('#navbar', {
-            scrollTrigger: {
-                trigger: 'body',
-                start: 'top -100',
-                end: '+=99999',
-                toggleClass: { targets: '#navbar', className: 'bg-slate-900' }
-            }
-        });
-
-        // Progress bar
-        gsap.to('#progressBar', {
-            scrollTrigger: {
-                trigger: 'body',
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: true
-            },
-            width: '100%'
-        });
-
-        // Active nav link
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link, .mobile-link');
-
-        function updateActiveNavLink() {
-            let currentSection = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
                 }
             });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-section') === currentSection) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', updateActiveNavLink);
-
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
         });
 
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('open');
-        });
-
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        });
-
-        // Smooth scroll for anchor links
+        // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1123,15 +785,97 @@
                         top: target.offsetTop - 80,
                         behavior: 'smooth'
                     });
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.add('hidden');
                 }
             });
         });
 
-        // Easter egg console message
-        console.log('%c🚀 Welcome to the Tech Journey Portfolio! 🎯', 'color: #34d399; font-size: 20px; font-weight: bold;');
-        console.log('%cYou discovered the hidden message! Christian has been thriving in tech for over 10 years, evolving from Software Engineer to ML specialist.', 'color: #fbbf24; font-size: 14px;');
-        console.log('%cConstantly adapting to the ever-changing tech landscape! 💡', 'color: #94a3b8; font-size: 12px;');
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Modal functions
+        function openModal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Animate modal content
+            gsap.from(modal.querySelector('.modal-content'), {
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.3,
+                ease: 'back.out(1.7)'
+            });
+        }
+
+        function closeModal(type) {
+            const modal = document.getElementById(type + 'Modal');
+            
+            gsap.to(modal.querySelector('.modal-content'), {
+                scale: 0.8,
+                opacity: 0,
+                duration: 0.2,
+                onComplete: () => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    const type = modal.id.replace('Modal', '');
+                    closeModal(type);
+                }
+            });
+        });
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    const type = modal.id.replace('Modal', '');
+                    closeModal(type);
+                });
+            }
+        });
+
+        // Add active state to navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-white');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('text-white');
+                }
+            });
+        });
     </script>
 </body>
-
 </html>
