@@ -246,7 +246,8 @@
                 font-size: 1.25rem !important;
             }
 
-            .text-container p, .text-container li {
+            .text-container p,
+            .text-container li {
                 font-size: 0.95rem !important;
                 line-height: 1.5;
             }
@@ -284,7 +285,8 @@
                 font-size: 1.125rem !important;
             }
 
-            .text-container p, .text-container li {
+            .text-container p,
+            .text-container li {
                 font-size: 0.9rem !important;
             }
 
@@ -315,6 +317,7 @@
 
         /* Melhorias para telas muito pequenas */
         @media (max-width: 360px) {
+
             .hero-buttons button,
             .hero-buttons a {
                 padding: 0.75rem 1rem !important;
@@ -385,7 +388,8 @@
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center pt-16 px-4">
         <div class="container mx-auto text-center">
-            <div class="hero-icon w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mb-6">
+            <div
+                class="hero-icon w-24 h-24 mx-auto rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1 mb-6">
                 <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
                     <i class="fas fa-code text-2xl gradient-text"></i>
                 </div>
@@ -443,7 +447,8 @@
                     <div class="space-y-4 text-container">
                         <div>
                             <h4 class="text-base font-semibold text-blue-400">Master of Science</h4>
-                            <p class="text-slate-400 text-sm">Mechatronics, Robotics, and Automation Engineering + AI</p>
+                            <p class="text-slate-400 text-sm">Mechatronics, Robotics, and Automation Engineering + AI
+                            </p>
                             <p class="text-slate-500 text-sm">Universidade de Brasília | 2022 - 2024</p>
                         </div>
                         <div>
@@ -507,7 +512,8 @@
                         </div>
                         <span class="text-slate-400 text-sm">Out 2024 - Presente</span>
                     </div>
-                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Montevidéu, Uruguai (Remoto)</p>
+                    <p class="text-slate-400 mb-4 text-sm"><i
+                            class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Montevidéu, Uruguai (Remoto)</p>
                     <div class="flex flex-wrap gap-2">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Machine Learning</span>
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">MLOps</span>
@@ -525,7 +531,8 @@
                         </div>
                         <span class="text-slate-400 text-sm">Nov 2021 - Out 2024</span>
                     </div>
-                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Redwood City, CA, USA</p>
+                    <p class="text-slate-400 mb-4 text-sm"><i
+                            class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Redwood City, CA, USA</p>
                     <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4 text-sm experience-list">
                         <li>Automação de plataforma de pesquisa em ML</li>
                         <li>Técnicas neuromórficas para modelos de Deep Learning</li>
@@ -551,7 +558,8 @@
                         </div>
                         <span class="text-slate-400 text-sm">Fev 2021 - Out 2021</span>
                     </div>
-                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Brasil</p>
+                    <p class="text-slate-400 mb-4 text-sm"><i
+                            class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Brasil</p>
                     <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4 text-sm experience-list">
                         <li>Sistema de recomendação empresarial com A/B testing</li>
                         <li>Previsão de renda média baseada em geolocalização</li>
@@ -575,7 +583,8 @@
                         </div>
                         <span class="text-slate-400 text-sm">Abr 2010 - Jan 2022</span>
                     </div>
-                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-green-500 mr-2"></i>Brasília, Brasil</p>
+                    <p class="text-slate-400 mb-4 text-sm"><i
+                            class="fas fa-map-marker-alt text-green-500 mr-2"></i>Brasília, Brasil</p>
                     <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4 text-sm experience-list">
                         <li>Design da Política de Dados Abertos do Brasil</li>
                         <li>Design da Infraestrutura de Dados Abertos do Brasil</li>
@@ -601,7 +610,8 @@
                         </div>
                         <span class="text-slate-400 text-sm">Jun 2019 - Jan 2021</span>
                     </div>
-                    <p class="text-slate-400 mb-4 text-sm"><i class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Brasília, Brasil</p>
+                    <p class="text-slate-400 mb-4 text-sm"><i
+                            class="fas fa-map-marker-alt text-purple-500 mr-2"></i>Brasília, Brasil</p>
                     <ul class="list-disc list-inside text-slate-300 space-y-2 mb-4 text-sm experience-list">
                         <li>Pipeline de Speech-to-Text</li>
                         <li>Serviço de pontuação de texto</li>
@@ -889,14 +899,13 @@
         <div class="modal-content p-4">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="text-xl font-bold gradient-text">Certificados</h2>
-                <button onclick="closeModal('certificates')"
-                    class="text-xl text-slate-400 hover:text-white">
+                <button onclick="closeModal('certificates')" class="text-xl text-slate-400 hover:text-white">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                 <!-- Designing Machine Learning Workflows in Python -->
-                <div class="card p-4 rounded-xl certificate-card">
+                <div class="card p-4 rounded-xl certificate-card mt-2">
                     <div class="flex flex-col mb-4">
                         <div class="mb-2">
                             <h3 class="text-lg font-bold text-purple-400 mb-2">Designing Machine Learning
@@ -905,15 +914,13 @@
                         </div>
                         <span class="text-slate-500 text-sm">Jul 2019</span>
                     </div>
-                    <p class="text-slate-500 mb-3 text-sm">Credencial: #10013317</p>
                     <div class="flex flex-wrap gap-2 mb-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">MLflow</span>
                     </div>
                     <div class="flex justify-end">
-                        <button
-                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
-                            Ver Certificado
-                        </button>
+                        <a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/c9037dfec087a3bf4d7e0449313a95a5193cba2d"
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all"
+                            target="_blank">Ver Certificado</a>
                     </div>
                 </div>
 
@@ -927,15 +934,13 @@
                         </div>
                         <span class="text-slate-500 text-sm">Jan 2019</span>
                     </div>
-                    <p class="text-slate-500 mb-3 text-sm">Credencial: EEUR42QH</p>
                     <div class="flex flex-wrap gap-2 mb-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Hypothesis Testing</span>
                     </div>
                     <div class="flex justify-end">
-                        <button
-                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
-                            Ver Certificado
-                        </button>
+                        <a href="https://www.udacity.com/certificate/EEUR42QH"
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all"
+                            target="_blank">Ver Certificado</a>
                     </div>
                 </div>
 
@@ -949,12 +954,10 @@
                         </div>
                         <span class="text-slate-500 text-sm">Fev 2018</span>
                     </div>
-                    <p class="text-slate-500 mb-4 text-sm">Credencial: LML8DG5S2SU5</p>
                     <div class="flex justify-end">
-                        <button
-                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
-                            Ver Certificado
-                        </button>
+                        <a href="https://www.coursera.org/account/accomplishments/specialization/LML8DG5S2SU5"
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all"
+                            target="_blank">Ver Certificado</a>
                     </div>
                 </div>
 
@@ -967,12 +970,11 @@
                         </div>
                         <span class="text-slate-500 text-sm">Fev 2018</span>
                     </div>
-                    <p class="text-slate-500 mb-4 text-sm">Credencial: F5CP33BADL6G</p>
                     <div class="flex justify-end">
-                        <button
-                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
-                            Ver Certificado
-                        </button>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/F5CP33BADL6G"
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all"
+                            target="_blank">Ver Certificado</a>
+
                     </div>
                 </div>
 
@@ -986,12 +988,11 @@
                         </div>
                         <span class="text-slate-500 text-sm">Jan 2018</span>
                     </div>
-                    <p class="text-slate-500 mb-4 text-sm">Credencial: WFN8FBSMF47P</p>
                     <div class="flex justify-end">
-                        <button
-                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
-                            Ver Certificado
-                        </button>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/WFN8FBSMF47P"
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all"
+                            target="_blank">Ver Certificado</a>
+
                     </div>
                 </div>
 
@@ -1006,15 +1007,14 @@
                         </div>
                         <span class="text-slate-500 text-sm">Dez 2017</span>
                     </div>
-                    <p class="text-slate-500 mb-3 text-sm">Credencial: HZ66NPXXXZBT</p>
                     <div class="flex flex-wrap gap-2 mb-3">
                         <span class="skill-tag px-3 py-1 rounded-full text-xs">Hypothesis Testing</span>
                     </div>
                     <div class="flex justify-end">
-                        <button
-                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
-                            Ver Certificado
-                        </button>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/HZ66NPXXXZBT"
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all"
+                            target="_blank">Ver Certificado</a>
+
                     </div>
                 </div>
 
@@ -1029,12 +1029,11 @@
                         </div>
                         <span class="text-slate-500 text-sm">Dez 2017</span>
                     </div>
-                    <p class="text-slate-500 mb-4 text-sm">Credencial: PGGE9RZHF57R</p>
                     <div class="flex justify-end">
-                        <button
-                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
-                            Ver Certificado
-                        </button>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/PGGE9RZHF57R"
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all"
+                            target="_blank">Ver Certificado</a>
+
                     </div>
                 </div>
 
@@ -1048,12 +1047,10 @@
                         </div>
                         <span class="text-slate-500 text-sm">Nov 2017</span>
                     </div>
-                    <p class="text-slate-500 mb-4 text-sm">Credencial: KBDZWVUZFCZE</p>
                     <div class="flex justify-end">
-                        <button
-                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all">
-                            Ver Certificado
-                        </button>
+                        <a href="https://www.coursera.org/account/accomplishments/verify/KBDZWVUZFCZE"
+                            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded-full text-white text-sm font-semibold transition-all"
+                            target="_blank">Ver Certificado</a>
                     </div>
                 </div>
             </div>
@@ -1264,7 +1261,7 @@
         });
 
         // Melhorias de toque para dispositivos móveis
-        document.addEventListener('touchstart', function() {}, {passive: true});
+        document.addEventListener('touchstart', function () { }, { passive: true });
     </script>
 </body>
 
