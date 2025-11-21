@@ -162,17 +162,63 @@
             }
         }
 
-        /* Mobile Menu Styles */
-        .mobile-menu {
-            transition: transform 0.3s ease-in-out;
+        /* Estilos do Hamburger Animado */
+        .hamburger-line {
+            transform-origin: center;
+            transition: all 0.3s ease-in-out;
         }
 
-        .mobile-menu.hidden {
-            transform: translateX(-100%);
+        .hamburger-line:nth-child(1) {
+            transform: translateY(-6px);
         }
 
+        .hamburger-line:nth-child(2) {
+            opacity: 1;
+        }
+
+        .hamburger-line:nth-child(3) {
+            transform: translateY(6px);
+        }
+
+        /* Estado ativo - transforma em X */
+        #menuBtn.active .hamburger-line:nth-child(1) {
+            transform: translateY(0) rotate(45deg);
+        }
+
+        #menuBtn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        #menuBtn.active .hamburger-line:nth-child(3) {
+            transform: translateY(0) rotate(-45deg);
+        }
+
+        /* Menu mobile compacto */
         .mobile-menu.active {
-            transform: translateX(0);
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .mobile-menu {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Overlay para fechar o menu */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 35;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Responsividade melhorada */
@@ -356,7 +402,7 @@
     <nav class="fixed top-0 w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-700/50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex items-center justify-between">
-                <h1 class="text-xl font-bold gradient-text">Christian Miranda</h1>
+                <h1 class="md:text-xl text-lg font-bold gradient-text">Christian Miranda</h1>
                 <div class="hidden md:flex space-x-6">
                     <a href="#home" class="nav-link text-slate-300 hover:text-white text-sm">Home</a>
                     <a href="#about" class="nav-link text-slate-300 hover:text-white text-sm">Sobre</a>
@@ -364,24 +410,25 @@
                     <a href="#skills" class="nav-link text-slate-300 hover:text-white text-sm">Skills</a>
                     <a href="#contact" class="nav-link text-slate-300 hover:text-white text-sm">Contato</a>
                 </div>
-                <button id="menuBtn" class="md:hidden text-white p-2">
-                    <i class="fas fa-bars text-xl"></i>
+                
+                <!-- Botão Hamburger Animado -->
+                <button id="menuBtn" class="md:hidden flex flex-col w-6 h-6 justify-center items-center relative">
+                    <span class="hamburger-line transition-all duration-300 ease-in-out absolute w-6 h-0.5 bg-white rounded"></span>
+                    <span class="hamburger-line transition-all duration-300 ease-in-out absolute w-6 h-0.5 bg-white rounded mt-0"></span>
+                    <span class="hamburger-line transition-all duration-300 ease-in-out absolute w-6 h-0.5 bg-white rounded mt-0"></span>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-slate-900 z-40 hidden md:hidden">
-        <div class="flex flex-col items-center justify-center h-full space-y-8 p-4">
-            <button id="closeMenuBtn" class="absolute top-6 right-6 text-white text-2xl">
-                <i class="fas fa-times"></i>
-            </button>
-            <a href="#home" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Home</a>
-            <a href="#about" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Sobre</a>
-            <a href="#experience" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Experiência</a>
-            <a href="#skills" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Skills</a>
-            <a href="#contact" class="text-2xl text-slate-300 hover:text-white mobile-link py-2">Contato</a>
+    <!-- Mobile Menu Compacto -->
+    <div id="mobileMenu" class="mobile-menu fixed top-16 right-4 z-40 bg-slate-800/95 backdrop-blur-md rounded-xl shadow-2xl border border-slate-700/50 hidden md:hidden transform transition-all duration-300 ease-in-out opacity-0 scale-95 origin-top-right">
+        <div class="flex flex-col p-4 space-y-3 min-w-[200px]">
+            <a href="#home" class="mobile-link text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg px-4 py-3 transition-all duration-200 text-base font-medium">Home</a>
+            <a href="#about" class="mobile-link text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg px-4 py-3 transition-all duration-200 text-base font-medium">Sobre</a>
+            <a href="#experience" class="mobile-link text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg px-4 py-3 transition-all duration-200 text-base font-medium">Experiência</a>
+            <a href="#skills" class="mobile-link text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg px-4 py-3 transition-all duration-200 text-base font-medium">Skills</a>
+            <a href="#contact" class="mobile-link text-slate-300 hover:text-white hover:bg-slate-700/50 rounded-lg px-4 py-3 transition-all duration-200 text-base font-medium">Contato</a>
         </div>
     </div>
 
@@ -1129,33 +1176,78 @@
             });
         });
 
-        // Mobile menu toggle
+        // Mobile menu toggle - VERSÃO ATUALIZADA
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-        const closeMenuBtn = document.getElementById('closeMenuBtn');
 
         function openMobileMenu() {
+            menuBtn.classList.add('active');
             mobileMenu.classList.remove('hidden');
+            
+            // Pequeno delay para garantir a transição
             setTimeout(() => {
                 mobileMenu.classList.add('active');
             }, 10);
+            
+            // Adiciona overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'mobile-overlay';
+            overlay.id = 'mobileOverlay';
+            document.body.appendChild(overlay);
+            
+            setTimeout(() => {
+                overlay.classList.add('active');
+            }, 10);
+            
             document.body.style.overflow = 'hidden';
         }
 
         function closeMobileMenu() {
+            menuBtn.classList.remove('active');
             mobileMenu.classList.remove('active');
+            
+            // Remove overlay
+            const overlay = document.getElementById('mobileOverlay');
+            if (overlay) {
+                overlay.classList.remove('active');
+                setTimeout(() => {
+                    overlay.remove();
+                }, 300);
+            }
+            
             setTimeout(() => {
                 mobileMenu.classList.add('hidden');
             }, 300);
+            
             document.body.style.overflow = 'auto';
         }
 
-        menuBtn.addEventListener('click', openMobileMenu);
-        closeMenuBtn.addEventListener('click', closeMobileMenu);
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('hidden')) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
+            }
+        });
 
-        // Close mobile menu on link click
+        // Fechar menu ao clicar em um link
         document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Fechar menu ao clicar no overlay
+        document.addEventListener('click', (e) => {
+            const overlay = document.getElementById('mobileOverlay');
+            if (overlay && overlay.contains(e.target)) {
+                closeMobileMenu();
+            }
+        });
+
+        // Fechar menu ao pressionar ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                closeMobileMenu();
+            }
         });
 
         // Modal functions - versão corrigida e mais rápida
